@@ -1,0 +1,130 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Updated color system to use only blue colors with proper contrast ratios */
+  --background: oklch(0.08 0.02 240); /* Dark blue background */
+  --foreground: oklch(1 0 0); /* Pure white text */
+  --card: oklch(0.12 0.02 240); /* Darker blue card background */
+  --card-foreground: oklch(0.95 0.01 240); /* Light blue text with better contrast */
+  --primary: oklch(0.4 0.15 240); /* Brighter blue primary for better contrast */
+  --primary-foreground: oklch(1 0 0); /* White text */
+  --secondary: oklch(0.7 0.2 220); /* Bright blue accent with good contrast */
+  --secondary-foreground: oklch(0.08 0.02 240); /* Dark text on light background */
+  --muted: oklch(0.35 0.02 240); /* Muted blue */
+  --muted-foreground: oklch(0.9 0.01 240); /* Much lighter text for better contrast */
+  --accent: oklch(0.7 0.2 220); /* Bright blue accent */
+  --accent-foreground: oklch(0.08 0.02 240); /* Dark text on accent */
+  --destructive: oklch(0.55 0.2 25); /* Red for errors */
+  --destructive-foreground: oklch(1 0 0); /* White text */
+  --border: oklch(0.3 0.05 240); /* Brighter blue borders */
+  --input: oklch(0.12 0.02 240); /* Dark input background */
+  --ring: oklch(0.7 0.2 220); /* Bright blue focus ring */
+}
+
+/* Removed all emerald/cyan color references and replaced with blue variants */
+/* Cyber-themed animations with blue colors */
+@keyframes glitch {
+  0%,
+  100% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+}
+
+@keyframes matrix-rain {
+  0% {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+@keyframes neon-pulse {
+  0%,
+  100% {
+    text-shadow: 0 0 5px currentColor, 0 0 10px currentColor, 0 0 15px currentColor;
+  }
+  50% {
+    text-shadow: 0 0 2px currentColor, 0 0 5px currentColor, 0 0 8px currentColor;
+  }
+}
+
+@keyframes scan-line {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100vw);
+  }
+}
+
+.glitch-effect {
+  animation: glitch 0.3s ease-in-out infinite alternate;
+}
+
+.matrix-char {
+  animation: matrix-rain linear infinite;
+  font-family: "Courier New", monospace;
+  color: oklch(0.7 0.2 220); /* Bright blue matrix characters */
+}
+
+.neon-text {
+  animation: neon-pulse 2s ease-in-out infinite;
+}
+
+.scan-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, oklch(0.7 0.2 220), transparent);
+  animation: scan-line 3s linear infinite;
+}
+
+/* Custom blue cyber theme with proper contrast */
+.cyber-grid {
+  background-image: linear-gradient(rgba(96, 165, 250, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(96, 165, 250, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+.cyber-border {
+  border: 1px solid oklch(0.7 0.2 220);
+  box-shadow: 0 0 10px oklch(0.7 0.2 220 / 0.3);
+}
+
+.cyber-glow {
+  box-shadow: 0 0 20px oklch(0.7 0.2 220 / 0.5);
+}
+
+/* Added utility classes for high contrast text */
+.text-high-contrast {
+  color: oklch(1 0 0); /* Pure white for maximum contrast */
+}
+
+.text-blue-high-contrast {
+  color: oklch(0.8 0.15 220); /* Light blue with high contrast */
+}

@@ -1,16 +1,43 @@
 ---
-
+import "../styles/global.css";
+import CyberHero from "../components/CyberHero.jsx";
+import AboutSkills from "../components/AboutSkills.jsx";
+import ExperienceTimeline from "../components/ExperienceTimeline.jsx";
+import ProjectsGallery from "../components/ProjectsGallery.jsx";
+import ContactSection from "../components/ContactSection.jsx";
+import GlobalCyberEffects from "../components/GlobalCyberEffects.jsx";
+import Navigation from "../components/Navigation.jsx";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Portfolio Cybersécurité | Expert en Sécurité Informatique</title>
+    <meta name="description" content="Portfolio professionnel d'un expert en cybersécurité spécialisé en tests de pénétration, audits de sécurité et analyse de menaces." />
+  </head>
+  <body class="min-h-screen bg-slate-950 text-white font-mono">
+    <GlobalCyberEffects client:load />
+    <Navigation client:load />
+    
+    <main class="relative z-10">
+      <div id="hero">
+        <CyberHero client:load />
+      </div>
+      <div id="about">
+        <AboutSkills client:load />
+      </div>
+      <div id="experience">
+        <ExperienceTimeline client:load />
+      </div>
+      <div id="projects">
+        <ProjectsGallery client:load />
+      </div>
+      <div id="contact">
+        <ContactSection client:load />
+      </div>
+    </main>
+  </body>
 </html>
