@@ -61,7 +61,7 @@ export default function Navigation() {
                 ease: "easeInOut",
               }}
             >
-              Cyber.Engineer
+            
             </motion.span>
           </motion.div>
 
