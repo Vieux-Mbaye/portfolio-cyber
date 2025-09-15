@@ -8,7 +8,7 @@ export default function CyberHero() {
   const [dimensions, setDimensions] = useState({ width: 1200, height: 800 })
   const [isScrolled, setIsScrolled] = useState(false)
   const [mounted, setMounted] = useState(false)
-  const fullText = "Next-Gen SSI Engineer"
+  const fullText = "</Next-Gen SSI Engineer>"
 
   useEffect(() => {
     setMounted(true)
