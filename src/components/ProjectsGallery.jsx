@@ -42,7 +42,7 @@ export default function ProjectsGallery() {
       technologies: ["SCADA", "PLC", "DCS", "Historian", "HMI", "Purdue Model", "OpenPLC", "Modbus", "GRFICSv2"],
       impact: "Cyber Range operationnel avec 2 sous-stations, architecture Purdue complete, phase offensive pour demonstration d'impacts et proposition de mesures defensives.",
       status: "En cours",
-      image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-1SErglvb9VXwbdooisIk38PxevRgre.png",
+      image: "",
     },
     {
       title: "SIEM + IDS Intelligence Artificielle",
@@ -51,7 +51,7 @@ export default function ProjectsGallery() {
       technologies: ["SIEM", "Suricata", "Python", "Machine Learning", "ELK Stack"],
       impact: "Detection automatique d'intrusions via signatures + classification intelligente des alertes par IA",
       status: "En cours",
-      image: "../../public/wazuh.png",
+      image: "../../public/bankguard.png",
     },
     {
       title: "BankGuard - Projet DevSecOps",
