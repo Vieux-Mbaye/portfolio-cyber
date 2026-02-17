@@ -17,7 +17,6 @@ export default function GlobalCyberEffects() {
     resizeCanvas()
     window.addEventListener("resize", resizeCanvas)
 
-    // Particles system
     const particles = []
     const particleCount = 50
 
@@ -35,8 +34,8 @@ export default function GlobalCyberEffects() {
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-      ctx.fillStyle = "rgba(96, 165, 250, 0.1)"
-      ctx.strokeStyle = "rgba(96, 165, 250, 0.2)"
+      ctx.fillStyle = "rgba(34, 197, 94, 0.1)"
+      ctx.strokeStyle = "rgba(34, 197, 94, 0.2)"
 
       particles.forEach((particle, i) => {
         particle.x += particle.vx
@@ -50,7 +49,6 @@ export default function GlobalCyberEffects() {
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2)
         ctx.fill()
 
-        // Draw connections
         particles.slice(i + 1).forEach((otherParticle) => {
           const dx = particle.x - otherParticle.x
           const dy = particle.y - otherParticle.y
@@ -80,4 +78,3 @@ export default function GlobalCyberEffects() {
     <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none z-0" style={{ background: "transparent" }} />
   )
 }
-
