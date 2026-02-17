@@ -1,161 +1,190 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { useEffect, useRef, useState } from "react"
+import { useState, useEffect, useRef } from "react"
 
 export default function ProjectsGallery() {
   const [isVisible, setIsVisible] = useState(false)
   const [filter, setFilter] = useState("all")
-  const ref = useRef(null)
+  const ref = useRef()
 
   useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => entry.isIntersecting && setIsVisible(true), {
-      threshold: 0.1,
-    })
-    if (ref.current) observer.observe(ref.current)
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+        }
+      },
+      { threshold: 0.1 },
+    )
+
+    if (ref.current) {
+      observer.observe(ref.current)
+    }
+
     return () => observer.disconnect()
   }, [])
 
   const projects = [
     {
-      title: "SIEM Wazuh + IDS Intelligence Artificielle",
-      category: "siem",
-      description: "Déploiement d'un SIEM Wazuh couplé à un IDS avec intelligence artificielle (Suricata + IA).",
-      technologies: ["Wazuh", "Suricata", "Python", "Machine Learning", "ELK Stack"],
-      impact: "Détection automatique d'intrusions (signatures) + classification intelligente des alertes par IA.",
+      title: "Maturation de la Plateforme SOAR Open-Source pour la Cyber-Defense Proactive",
+      category: "soar",
+      description: "Projet de maturation d'un stack SOC open-source (Wazuh, Shuffle, TheHive, Cortex, MISP) pour transformer la posture de securite reactive en un framework de defense intelligent et proactif.",
+      technologies: ["Wazuh", "Shuffle", "TheHive", "Cortex", "MISP", "VirusTotal", "AbuseIPDB", "API REST", "Python"],
+      impact: "5 phases deployees : enrichissement multi-sources, reponse active HITL, gestion des vulnerabilites, threat hunting automatise, metriques SOC. Reduction significative du travail manuel analyste et acceleration du temps de reponse aux incidents.",
       status: "En cours",
-      image: "/wazuh.png",
+      image: "../../public/shuffle.png",
+    },
+    {
+      title: "ICS Cyber Range - Digital Twin de Dispatching Electrique",
+      category: "ics",
+      description: "Conception et deploiement d'un Cyber Range industriel simulant un reseau de dispatching electrique complet suivant le modele Purdue.",
+      technologies: ["SCADA", "PLC", "DCS", "Historian", "HMI", "Purdue Model", "OpenPLC", "Modbus", "GRFICSv2"],
+      impact: "Cyber Range operationnel avec 2 sous-stations, architecture Purdue complete, phase offensive pour demonstration d'impacts et proposition de mesures defensives.",
+      status: "En cours",
+      image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-1SErglvb9VXwbdooisIk38PxevRgre.png",
+    },
+    {
+      title: "SIEM + IDS Intelligence Artificielle",
+      category: "siem",
+      description: "Deploiement d'un SIEM couple d'un IDS avec intelligence artificielle (Suricata + IA)",
+      technologies: ["SIEM", "Suricata", "Python", "Machine Learning", "ELK Stack"],
+      impact: "Detection automatique d'intrusions via signatures + classification intelligente des alertes par IA",
+      status: "En cours",
+      image: "../../public/wazuh.png",
     },
     {
       title: "BankGuard - Projet DevSecOps",
       category: "devsecops",
-      description: "Développement d'un logiciel bancaire sécurisé avec CI/CD intégré.",
+      description: "Developpement d'un logiciel bancaire securise avec CI/CD integre",
       technologies: ["Docker", "Jenkins", "Git", "SCA", "SAST", "DAST"],
-      impact: "Tests de sécurité intégrés, durcissement et audit de code automatisés dans la pipeline.",
-      status: "Terminé",
-      image: "/bankguard.png",
-      projectUrl: "https://github.com/Vieux-Mbaye/bankguard.git",
-      codeUrl: "https://github.com/Vieux-Mbaye/bankguard.git",
+      impact: "Integration de tests de securite, durcissement et audit de code automatises",
+      status: "Termine",
+      image: "../../public/bankguard.png",
     },
     {
-      title: "Infrastructure Réseau Avancée d'Entreprise",
+      title: "Infrastructure Reseau Avancee d'Entreprise",
       category: "infrastructure",
-      description: "Architecture sécurisée complète avec gestion centralisée des accès.",
+      description: "Architecture securisee complete avec gestion centralisee des acces",
       technologies: ["Kerberos", "FreeRADIUS", "Active Directory", "LDAP", "VoIP", "Samba"],
-      impact: "Déploiement sur environnement virtualisé (VNC, RDP, noVNC) et gouvernance des accès.",
-      status: "Terminé",
-      image: "/rx.jpg",
-      projectUrl: "https://drive.google.com/file/d/11yrDGUYlPqWFR3TtSl2KKsTvQ6oLh35O/view?usp=sharing",
+      impact: "Deploiement sur environnement virtualise avec VNC, RDP, NoVNC",
+      status: "Termine",
+      image: "../../public/rx.jpg",
     },
     {
       title: "Pare-feu pfSense + FreeRADIUS + Squid",
       category: "security",
-      description: "Solution complète de sécurité réseau avec authentification centralisée.",
+      description: "Solution complete de securite reseau avec authentification centralisee",
       technologies: ["pfSense", "FreeRADIUS", "Squid", "DNS", "Portail Captif"],
-      impact: "Filtrage Web avancé, DNS local avec enregistrements dynamiques et portail captif.",
-      status: "Terminé",
-      image: "/rx.jpg",
+      impact: "Filtrage Web avance, gestion DNS locale avec enregistrements dynamiques",
+      status: "Termine",
+      image: "../../public/rx.jpg",
     },
     {
-      title: "Détection de Malwares par Machine Learning",
+      title: "Detection de Malwares par Machine Learning",
       category: "ai",
-      description: "Apprentissage supervisé pour détecter des malwares à partir de features statiques.",
+      description: "Systeme de detection de malwares par apprentissage supervise",
       technologies: ["Python", "Scikit-learn", "TensorFlow", "Feature Engineering"],
-      impact: "Extraction de caractéristiques, modèle de prédiction et évaluation des performances.",
-      status: "Terminé",
-      image: "/malware.png",
+      impact: "Analyse statique de fichiers, extraction de features, prediction de comportements malveillants",
+      status: "Termine",
+      image: "../../public/malware.png",
     },
     {
-      title: "Audit de Sécurité & Durcissement Système",
+      title: "Audit de Securite & Durcissement Systeme",
       category: "audit",
-      description: "Analyse de vulnérabilités et renforcement de la configuration système.",
+      description: "Analyse complete de vulnerabilites et renforcement de la securite",
       technologies: ["Nessus", "OpenVAS", "Lynis", "Hardening Linux", "Log Analysis"],
-      impact: "Revue des permissions, durcissement des services, centralisation et analyse de logs.",
-      status: "Terminé",
-      image: "/dur.png",
+      impact: "Retro-ingenierie partielle, renforcement des permissions, logs et acces",
+      status: "Termine",
+      image: "../../public/dur.png",
     },
     {
-      title: "Correction Automatisée de Devoirs avec IA",
+      title: "Correction Automatisee de Devoirs avec IA",
       category: "ai",
-      description: "Plateforme d'analyse de réponses d'élèves avec scoring basé NLP + règles pédagogiques.",
+      description: "Plateforme d'analyse de reponses d'eleves avec scoring automatique",
       technologies: ["NLP", "Python", "Machine Learning", "Natural Language Processing"],
-      impact: "Score automatique et justification, backoffice enseignant.",
-      status: "Terminé",
-      image: "/IA.png",
+      impact: "Scoring automatique base sur NLP et regles pedagogiques",
+      status: "Termine",
+      image: "../../public/IA.png",
     },
     {
-      title: "Plateforme de Gestion Budgétaire ESP",
+      title: "Plateforme de Gestion Budgetaire ESP",
       category: "development",
-      description: "Suivi des dépenses par projet/étudiant avec authentification et chiffrement.",
+      description: "Systeme de suivi des depenses par projet/etudiant",
       technologies: ["PHP", "MySQL", "JavaScript", "Chiffrement", "Auth"],
-      impact: "Gestion sécurisée des budgets et rôles utilisateurs.",
-      status: "Terminé",
-      image: "/Gestion.jpg",
+      impact: "Authentification securisee, stockage en base chiffree",
+      status: "Termine",
+      image: "../../public/Gestion.jpg",
     },
     {
-      title: "Système IoT Contrôle de Lampes MQTT",
+      title: "Systeme IoT Controle de Lampes MQTT",
       category: "iot",
-      description: "Pilotage distant d'équipements via MQTT (Mosquitto) et interface Web.",
-      technologies: ["MQTT", "Mosquitto", "IoT", "Web UI", "Security"],
-      impact: "Contrôles, authentification et logique d'accès.",
-      status: "Terminé",
-      image: "/mqtt.png",
+      description: "Pilotage distant d'equipements via protocole MQTT",
+      technologies: ["MQTT", "Mosquitto", "IoT", "Web Interface", "Security"],
+      impact: "Interfaces web/console, logique de securite d'acces",
+      status: "Termine",
+      image: "../../public/mqtt.png",
     },
   ]
 
   const categories = [
-    { id: "all", name: "Tous" },
+    { id: "all", name: "Tous les projets" },
+    { id: "soar", name: "SOAR & Automatisation" },
+    { id: "ics", name: "ICS/OT & Industrie" },
     { id: "siem", name: "SIEM & SOC" },
     { id: "devsecops", name: "DevSecOps" },
     { id: "infrastructure", name: "Infrastructure" },
-    { id: "security", name: "Sécurité" },
-    { id: "ai", name: "IA" },
-    { id: "audit", name: "Audit" },
-    { id: "development", name: "Dev" },
-    { id: "iot", name: "IoT" },
+    { id: "security", name: "Securite" },
+    { id: "ai", name: "Intelligence Artificielle" },
+    { id: "audit", name: "Audit & Pentest" },
+    { id: "development", name: "Developpement" },
+    { id: "iot", name: "IoT & Systemes" },
   ]
 
   const filteredProjects = filter === "all" ? projects : projects.filter((p) => p.category === filter)
 
   return (
-    <section ref={ref} className="py-12 sm:py-20 px-4 sm:px-6 bg-slate-950 cyber-grid">
+    <section ref={ref} className="py-20 px-6 bg-slate-950 cyber-grid">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-12 sm:mb-16"
+          className="text-center mb-16"
         >
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             MES{" "}
             <motion.span
-              className="text-blue-400"
+              className="text-emerald-400"
               animate={{
                 textShadow: [
-                  "0 0 20px rgba(96, 165, 250, 0.5), 0 0 40px rgba(96, 165, 250, 0.3)",
-                  "0 0 30px rgba(96, 165, 250, 0.7), 0 0 60px rgba(96, 165, 250, 0.4)",
-                  "0 0 20px rgba(96, 165, 250, 0.5), 0 0 40px rgba(96, 165, 250, 0.3)",
+                  "0 0 20px rgba(52, 211, 153, 0.5), 0 0 40px rgba(52, 211, 153, 0.3)",
+                  "0 0 30px rgba(52, 211, 153, 0.7), 0 0 60px rgba(52, 211, 153, 0.4)",
+                  "0 0 20px rgba(52, 211, 153, 0.5), 0 0 40px rgba(52, 211, 153, 0.3)",
                 ],
               }}
-              transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+              transition={{
+                duration: 3,
+                repeat: Number.POSITIVE_INFINITY,
+                ease: "easeInOut",
+              }}
             >
               PROJETS
             </motion.span>
           </h2>
-
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-blue-200 max-w-3xl mx-auto mb-6 sm:mb-8">
-            Découvrez mes réalisations en cybersécurité et développement d'outils de sécurité
+          <p className="text-xl text-emerald-200 max-w-3xl mx-auto mb-8">
+            Decouvrez mes realisations en cybersecurite, automatisation SOC et securite industrielle
           </p>
 
-          <div className="flex overflow-x-auto sm:flex-wrap sm:justify-center gap-2 sm:gap-4 pb-2 sm:pb-0">
+          <div className="flex flex-wrap justify-center gap-4">
             {categories.map((category) => (
               <button
                 key={category.id}
                 onClick={() => setFilter(category.id)}
-                className={`flex-shrink-0 px-3 sm:px-6 py-2 rounded-lg font-medium transition-all duration-300 text-xs sm:text-sm ${
+                className={`px-6 py-2 rounded-lg font-medium transition-all duration-300 ${
                   filter === category.id
-                    ? "bg-blue-600 text-white cyber-glow"
-                    : "bg-slate-800 text-blue-200 hover:bg-slate-700"
+                    ? "bg-emerald-600 text-white cyber-glow"
+                    : "bg-slate-800 text-emerald-200 hover:bg-slate-700"
                 }`}
               >
                 {category.name}
@@ -164,7 +193,7 @@ export default function ProjectsGallery() {
           </div>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project, index) => (
             <motion.div
               key={project.title}
@@ -177,16 +206,17 @@ export default function ProjectsGallery() {
                 <img
                   src={project.image || "/placeholder.svg"}
                   alt={project.title}
-                  className="w-full h-32 sm:h-40 lg:h-48 object-cover group-hover:scale-110 transition-transform duration-300"
+                  crossOrigin="anonymous"
+                  className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
                 />
-                <div className="absolute inset-0 bg-blue-900/20 group-hover:bg-blue-900/10 transition-colors duration-300" />
+                <div className="absolute inset-0 bg-emerald-900/20 group-hover:bg-emerald-900/10 transition-colors duration-300"></div>
               </div>
 
-              <div className="p-4 sm:p-6">
+              <div className="p-6">
                 <div className="flex justify-between items-start mb-2">
-                  <h3 className="text-lg sm:text-xl font-bold text-white pr-2">{project.title}</h3>
+                  <h3 className="text-xl font-bold text-white">{project.title}</h3>
                   <span
-                    className={`flex-shrink-0 px-2 py-1 text-xs rounded ${
+                    className={`px-2 py-1 text-xs rounded flex-shrink-0 ml-2 ${
                       project.status === "En cours"
                         ? "bg-yellow-900/50 text-yellow-200 border border-yellow-600"
                         : "bg-green-900/50 text-green-200 border border-green-600"
@@ -195,46 +225,31 @@ export default function ProjectsGallery() {
                     {project.status}
                   </span>
                 </div>
+                <p className="text-emerald-200 mb-4">{project.description}</p>
 
-                <p className="text-blue-200 mb-3 sm:mb-4 text-sm sm:text-base">{project.description}</p>
-
-                <div className="mb-3 sm:mb-4">
-                  <div className="text-xs sm:text-sm text-blue-400 font-medium mb-2">Réalisations :</div>
-                  <div className="text-white text-xs sm:text-sm">{project.impact}</div>
+                <div className="mb-4">
+                  <div className="text-sm text-emerald-400 font-medium mb-2">Realisations:</div>
+                  <div className="text-white text-sm">{project.impact}</div>
                 </div>
 
-                <div className="flex flex-wrap gap-1 sm:gap-2 mb-3 sm:mb-4">
+                <div className="flex flex-wrap gap-2 mb-4">
                   {project.technologies.map((tech) => (
                     <span
                       key={tech}
-                      className="px-2 py-1 bg-blue-900/50 text-blue-200 text-xs rounded border border-blue-600"
+                      className="px-2 py-1 bg-emerald-900/50 text-emerald-200 text-xs rounded border border-emerald-600"
                     >
                       {tech}
                     </span>
                   ))}
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-2">
-                  {project.projectUrl && (
-                    <a
-                      href={project.projectUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1 px-3 sm:px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-xs sm:text-sm rounded transition-colors text-center"
-                    >
-                      Voir le projet
-                    </a>
-                  )}
-                  {project.codeUrl && (
-                    <a
-                      href={project.codeUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-3 sm:px-4 py-2 border border-blue-600 text-blue-400 hover:bg-blue-600 hover:text-white text-xs sm:text-sm rounded transition-colors text-center"
-                    >
-                      Code
-                    </a>
-                  )}
+                <div className="flex gap-2">
+                  <button className="flex-1 px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white text-sm rounded transition-colors">
+                    Voir le projet
+                  </button>
+                  <button className="px-4 py-2 border border-emerald-600 text-emerald-400 hover:bg-emerald-600 hover:text-white text-sm rounded transition-colors">
+                    Code
+                  </button>
                 </div>
               </div>
             </motion.div>
