@@ -17,8 +17,8 @@ export default function Navigation() {
 
   const navItems = [
     { name: "Accueil", href: "#hero" },
-    { name: "À propos", href: "#about" },
-    { name: "Expérience", href: "#experience" },
+    { name: "A propos", href: "#about" },
+    { name: "Experience", href: "#experience" },
     { name: "Projets", href: "#projects" },
     { name: "Contact", href: "#contact" },
   ]
@@ -27,7 +27,7 @@ export default function Navigation() {
     const element = document.querySelector(href)
     if (element) {
       element.scrollIntoView({ behavior: "smooth" })
-      setIsMobileMenuOpen(false) // Close mobile menu after navigation
+      setIsMobileMenuOpen(false)
     }
   }
 
@@ -47,12 +47,12 @@ export default function Navigation() {
             onClick={() => scrollToSection("#hero")}
           >
             <motion.span
-              className="text-blue-400"
+              className="text-emerald-400"
               animate={{
                 textShadow: [
-                  "0 0 20px rgba(96, 165, 250, 0.5), 0 0 40px rgba(96, 165, 250, 0.3)",
-                  "0 0 30px rgba(96, 165, 250, 0.7), 0 0 60px rgba(96, 165, 250, 0.4)",
-                  "0 0 20px rgba(96, 165, 250, 0.5), 0 0 40px rgba(96, 165, 250, 0.3)",
+                  "0 0 20px rgba(52, 211, 153, 0.5), 0 0 40px rgba(52, 211, 153, 0.3)",
+                  "0 0 30px rgba(52, 211, 153, 0.7), 0 0 60px rgba(52, 211, 153, 0.4)",
+                  "0 0 20px rgba(52, 211, 153, 0.5), 0 0 40px rgba(52, 211, 153, 0.3)",
                 ],
               }}
               transition={{
@@ -65,15 +65,14 @@ export default function Navigation() {
             </motion.span>
           </motion.div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-6 lg:space-x-8">
+          <div className="hidden md:flex gap-6 lg:gap-8">
             {navItems.map((item) => (
               <motion.button
                 key={item.name}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => scrollToSection(item.href)}
-                className="text-blue-200 hover:text-blue-400 transition-colors font-medium text-sm lg:text-base"
+                className="text-emerald-200 hover:text-emerald-400 transition-colors font-medium text-sm lg:text-base"
               >
                 {item.name}
               </motion.button>
@@ -85,7 +84,7 @@ export default function Navigation() {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-blue-400 hover:text-blue-600 transition-colors p-2"
+              className="text-emerald-400 hover:text-emerald-600 transition-colors p-2"
             >
               <div className="w-6 h-6 flex flex-col justify-center items-center">
                 <span
@@ -109,13 +108,13 @@ export default function Navigation() {
             exit={{ opacity: 0, y: -20 }}
             className="md:hidden mt-4 pb-4"
           >
-            <div className="flex flex-col space-y-3 bg-slate-900/95 rounded-lg p-4 cyber-border">
+            <div className="flex flex-col gap-3 bg-slate-900/95 rounded-lg p-4 cyber-border">
               {navItems.map((item) => (
                 <motion.button
                   key={item.name}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => scrollToSection(item.href)}
-                  className="text-blue-200 hover:text-blue-400 transition-colors font-medium text-left py-2 px-3 rounded hover:bg-slate-800/50"
+                  className="text-emerald-200 hover:text-emerald-400 transition-colors font-medium text-left py-2 px-3 rounded hover:bg-slate-800/50"
                 >
                   {item.name}
                 </motion.button>
