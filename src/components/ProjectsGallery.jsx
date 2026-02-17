@@ -42,7 +42,7 @@ export default function ProjectsGallery() {
       technologies: ["SCADA", "PLC", "DCS", "Historian", "HMI", "Purdue Model", "OpenPLC", "Modbus", "GRFICSv2"],
       impact: "Cyber Range operationnel avec 2 sous-stations, architecture Purdue complete, phase offensive pour demonstration d'impacts et proposition de mesures defensives.",
       status: "En cours",
-      image: "",
+      image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-1SErglvb9VXwbdooisIk38PxevRgre.png",
     },
     {
       title: "SIEM + IDS Intelligence Artificielle",
