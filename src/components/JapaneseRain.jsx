@@ -148,7 +148,7 @@ export default function JapaneseRain() {
         height: "100vh",
         zIndex: 5,
         pointerEvents: "none",
-        opacity: 0.5,
+        opacity: 0.78,
         mixBlendMode: "screen",
       }}
     />

@@ -85,10 +85,10 @@ export default function CyberHero() {
 
   return (
     <section
-      className="min-h-screen flex items-center justify-center relative overflow-hidden cyber-grid bg-slate-950/90"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden cyber-grid bg-slate-950/82"
     >
       <div
-        className="absolute inset-0 bg-gradient-to-br from-slate-950/90 via-slate-900/60 to-slate-950/88"
+        className="absolute inset-0 bg-gradient-to-br from-slate-950/80 via-slate-900/45 to-slate-950/78"
       ></div>
 
       <div className="absolute inset-0">
