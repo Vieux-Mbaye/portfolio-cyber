@@ -112,41 +112,6 @@ export default function CyberHero() {
         ))}
       </div>
 
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(12)].map((_, i) => (
-          <motion.div
-            key={`code-${i}`}
-            className="absolute text-xs font-mono text-emerald-300 opacity-20"
-            style={{
-              left: `${(i * 5) % 100}%`,
-              top: "-10%",
-            }}
-            animate={{
-              y: ["0vh", "110vh"],
-            }}
-            transition={{
-              duration: Math.random() * 3 + 2,
-              repeat: Number.POSITIVE_INFINITY,
-              delay: Math.random() * 2,
-              ease: "linear",
-            }}
-          >
-            {
-              [
-                "監視",
-                "防御",
-                "検知",
-                "解析",
-                "暗号",
-                "復旧",
-                "安全",
-                "脆弱性",
-              ][Math.floor(Math.random() * 8)]
-            }
-          </motion.div>
-        ))}
-      </div>
-
       <div className="relative z-10 text-center w-full max-w-6xl mx-auto px-4 sm:px-6 pt-24 pb-10">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
