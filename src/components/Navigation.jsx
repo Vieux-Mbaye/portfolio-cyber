@@ -25,6 +25,7 @@ export default function Navigation() {
           { name: "Expertise", href: "#about" },
           { name: "Expérience", href: "#experience" },
           { name: "Projets", href: "#projects" },
+          { name: "Articles", href: "/articles/" },
           { name: "Contact", href: "#contact" },
         ]
       : [
@@ -33,10 +34,16 @@ export default function Navigation() {
           { name: "Expertise", href: "#about" },
           { name: "Experience", href: "#experience" },
           { name: "Projects", href: "#projects" },
+          { name: "Articles", href: "/articles/" },
           { name: "Contact", href: "#contact" },
         ]
 
   const scrollToSection = (href) => {
+    if (href.startsWith("/")) {
+      window.location.href = href
+      return
+    }
+
     const element = document.querySelector(href)
     if (element) {
       element.scrollIntoView({ behavior: "smooth" })

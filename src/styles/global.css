@@ -126,3 +126,101 @@
 .text-blue-high-contrast {
   color: oklch(0.8 0.15 220); /* Light blue with high contrast */
 }
+
+.article-content {
+  color: rgb(226 232 240);
+  line-height: 1.85;
+}
+
+.article-content h2 {
+  color: rgb(110 231 183);
+  font-size: clamp(1.5rem, 2vw, 2rem);
+  font-weight: 800;
+  margin-top: 2.25rem;
+  margin-bottom: 1rem;
+}
+
+.article-content h3 {
+  color: rgb(209 250 229);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.article-content p,
+.article-content ul,
+.article-content ol,
+.article-content pre,
+.article-content blockquote,
+.article-content iframe {
+  margin-bottom: 1.25rem;
+}
+
+.article-content strong {
+  color: white;
+}
+
+.article-content em {
+  color: rgb(167 243 208);
+}
+
+.article-content a {
+  color: rgb(110 231 183);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.article-content ul,
+.article-content ol {
+  padding-left: 1.25rem;
+}
+
+.article-content li {
+  margin-bottom: 0.5rem;
+}
+
+.article-content ul li {
+  list-style: disc;
+}
+
+.article-content ol li {
+  list-style: decimal;
+}
+
+.article-content blockquote {
+  border-left: 3px solid rgb(16 185 129);
+  background: rgb(15 23 42 / 0.7);
+  padding: 1rem 1.25rem;
+  color: rgb(209 250 229);
+}
+
+.article-content code {
+  background: rgb(2 6 23);
+  border: 1px solid rgb(6 78 59);
+  border-radius: 0.35rem;
+  color: rgb(167 243 208);
+  padding: 0.1rem 0.35rem;
+}
+
+.article-content pre {
+  background: rgb(2 6 23);
+  border: 1px solid rgb(6 78 59);
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  padding: 1rem;
+}
+
+.article-content pre code {
+  background: transparent;
+  border: 0;
+  padding: 0;
+}
+
+.article-content img,
+.article-content video,
+.article-content iframe {
+  border: 1px solid rgb(6 78 59);
+  border-radius: 0.5rem;
+  max-width: 100%;
+}

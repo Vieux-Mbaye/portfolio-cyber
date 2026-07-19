@@ -20,6 +20,7 @@ export default function CyberHero() {
       contact: "Me contacter",
       linkedin: "LinkedIn",
       medium: "Medium",
+      articles: "Lire mes articles",
       stats: [
         { value: "SSI", label: "Ingénieur de conception" },
         { value: "IT/OT", label: "Cybersécurité industrielle" },
@@ -43,6 +44,7 @@ export default function CyberHero() {
       contact: "Contact me",
       linkedin: "LinkedIn",
       medium: "Medium",
+      articles: "Read articles",
       stats: [
         { value: "SSI", label: "Security engineer" },
         { value: "IT/OT", label: "Industrial cybersecurity" },
@@ -213,12 +215,10 @@ export default function CyberHero() {
             {t.linkedin}
           </a>
           <a
-            href="https://medium.com/@vieuxmbayendour"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/articles/"
             className="px-6 py-3 font-semibold rounded-lg transition-all duration-300 border border-emerald-400 text-emerald-200 hover:bg-emerald-500 hover:text-slate-950"
           >
-            {t.medium}
+            {t.articles}
           </a>
           <button
             onClick={() => {

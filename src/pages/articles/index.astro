@@ -1,0 +1,80 @@
+---
+import { getCollection } from "astro:content";
+import "../../styles/global.css";
+import GlobalCyberEffects from "../../components/GlobalCyberEffects.jsx";
+import JapaneseRain from "../../components/JapaneseRain.jsx";
+
+const articles = (await getCollection("articles"))
+  .filter((article) => !article.data.draft)
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+
+const formatDate = (date) =>
+  new Intl.DateTimeFormat("fr-FR", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+  }).format(date);
+---
+
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Articles | Vieux Mbaye NDOUR</title>
+    <meta name="description" content="Articles techniques de Vieux Mbaye NDOUR sur la cybersécurité IT/OT, SOC, SOAR, DevSecOps, pentesting et sécurité des systèmes." />
+  </head>
+  <body class="min-h-screen bg-slate-950 text-white font-mono">
+    <GlobalCyberEffects client:load />
+    <JapaneseRain client:load />
+
+    <main class="relative z-10">
+      <section class="min-h-screen px-6 py-20 cyber-grid">
+        <div class="max-w-7xl mx-auto">
+          <nav class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-16">
+            <a href="/" class="text-emerald-300 hover:text-emerald-200 font-bold">← Portfolio</a>
+            <a href="/admin/" class="inline-flex w-fit px-4 py-2 rounded border border-emerald-600 text-emerald-200 hover:bg-emerald-600 hover:text-slate-950 transition-colors">
+              Administration
+            </a>
+          </nav>
+
+          <div class="max-w-4xl mb-14">
+            <p class="text-sm uppercase tracking-[0.25em] text-emerald-200 mb-4">Publications</p>
+            <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">
+              Articles <span class="text-emerald-300 neon-text">cybersécurité</span>
+            </h1>
+            <p class="text-lg md:text-xl text-slate-200 leading-relaxed">
+              Analyses, retours d’expérience et notes techniques sur la cybersécurité IT/OT, le SOC Engineering,
+              l’automatisation, la sécurité des systèmes, le DevSecOps et l’analyse offensive/défensive.
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
+            {articles.map((article) => (
+              <article class="cyber-border rounded-lg overflow-hidden bg-slate-900/80 hover:bg-slate-900 transition-colors flex flex-col">
+                {article.data.cover && (
+                  <img src={article.data.cover} alt="" loading="lazy" class="w-full h-48 object-cover" />
+                )}
+                <div class="p-6 flex flex-col flex-1">
+                  <div class="text-sm text-emerald-200 mb-3">{formatDate(article.data.publishDate)}</div>
+                  <h2 class="text-xl font-bold text-white mb-3">{article.data.title}</h2>
+                  <p class="text-slate-200 leading-relaxed mb-5">{article.data.description}</p>
+                  <div class="flex flex-wrap gap-2 mb-6">
+                    {article.data.tags.map((tag) => (
+                      <span class="px-2 py-1 text-xs rounded border border-emerald-700/70 bg-emerald-950/50 text-emerald-100">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <a href={`/articles/${article.slug}/`} class="mt-auto inline-flex justify-center px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded transition-colors">
+                    Lire l’article
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
