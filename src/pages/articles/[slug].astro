@@ -35,7 +35,7 @@ const formatDate = (date) =>
     <JapaneseRain client:load />
 
     <main class="relative z-10">
-      <article class="min-h-screen px-6 py-20 cyber-grid">
+      <article class="min-h-screen px-4 sm:px-6 py-16 sm:py-20 cyber-grid bg-slate-950/82">
         <div class="max-w-4xl mx-auto">
           <nav class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-12">
             <a href="/articles/" class="text-emerald-300 hover:text-emerald-200 font-bold">← Articles</a>
@@ -44,8 +44,8 @@ const formatDate = (date) =>
 
           <header class="mb-10">
             <div class="text-sm text-emerald-200 mb-4">{formatDate(article.data.publishDate)}</div>
-            <h1 class="text-3xl md:text-5xl font-bold text-white leading-tight mb-5">{article.data.title}</h1>
-            <p class="text-lg md:text-xl text-slate-200 leading-relaxed">{article.data.description}</p>
+            <h1 class="text-[clamp(2rem,9vw,3.75rem)] font-bold text-white leading-tight mb-5 break-words">{article.data.title}</h1>
+            <p class="text-base md:text-xl text-slate-200 leading-relaxed">{article.data.description}</p>
             <div class="flex flex-wrap gap-2 mt-6">
               {article.data.tags.map((tag) => (
                 <span class="px-2 py-1 text-xs rounded border border-emerald-700/70 bg-emerald-950/50 text-emerald-100">
@@ -59,7 +59,7 @@ const formatDate = (date) =>
             <img src={article.data.cover} alt="" class="w-full max-h-[420px] object-cover rounded-lg cyber-border mb-10" />
           )}
 
-          <div class="article-content cyber-border rounded-lg bg-slate-900/80 p-6 md:p-10">
+          <div class="article-content cyber-border rounded-lg bg-slate-900/88 p-5 sm:p-6 md:p-10">
             <Content />
           </div>
         </div>

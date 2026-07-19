@@ -35,27 +35,35 @@ export default function JapaneseRain() {
 
     let animationId
     let drops = []
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
 
     const resizeCanvas = () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
+      const dpr = Math.min(window.devicePixelRatio || 1, 2)
+      canvas.width = Math.floor(window.innerWidth * dpr)
+      canvas.height = Math.floor(window.innerHeight * dpr)
+      canvas.style.width = "100vw"
+      canvas.style.height = "100vh"
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
       initDrops()
     }
 
     const initDrops = () => {
-      const fontSize = 18
-      const colCount = Math.floor(canvas.width / fontSize)
+      const width = window.innerWidth
+      const height = window.innerHeight
+      const fontSize = width < 640 ? 14 : width < 1024 ? 16 : 18
+      const density = width < 640 ? 0.55 : width < 1024 ? 0.72 : 0.9
+      const colCount = Math.floor((width / fontSize) * density)
       drops = []
       for (let i = 0; i < colCount; i++) {
-        const trailLength = 8 + Math.floor(Math.random() * 18)
+        const trailLength = 7 + Math.floor(Math.random() * 16)
         const trail = []
         for (let t = 0; t < trailLength; t++) {
           trail.push(randomChar())
         }
         drops.push({
-          x: i * fontSize,
-          y: Math.random() * canvas.height * -2,
-          speed: 2 + Math.random() * 4,
+          x: (i / colCount) * width + Math.random() * fontSize,
+          y: Math.random() * height * -2,
+          speed: prefersReducedMotion ? 0.6 : 1.5 + Math.random() * 3.2,
           fontSize: fontSize,
           trail: trail,
           trailLength: trailLength,
@@ -64,8 +72,7 @@ export default function JapaneseRain() {
     }
 
     const animate = () => {
-      // Clear completely - transparent background, no dark overlay
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight)
 
       drops.forEach((drop) => {
         drop.y += drop.speed
@@ -88,7 +95,7 @@ export default function JapaneseRain() {
             ctx.fillStyle = "rgba(134, 239, 172, 0.7)"
           } else {
             // Trail - fading green
-            const alpha = 0.5 * (1 - progress)
+            const alpha = 0.46 * (1 - progress)
             ctx.shadowColor = "transparent"
             ctx.shadowBlur = 0
             ctx.fillStyle = `rgba(34, 197, 94, ${Math.max(alpha, 0.03)})`
@@ -110,9 +117,9 @@ export default function JapaneseRain() {
 
         // Reset drop when it goes off screen
         const totalHeight = drop.trailLength * drop.fontSize
-        if (drop.y - totalHeight > canvas.height) {
-          drop.y = -(Math.random() * canvas.height) - totalHeight
-          drop.speed = 2 + Math.random() * 4
+        if (drop.y - totalHeight > window.innerHeight) {
+          drop.y = -(Math.random() * window.innerHeight) - totalHeight
+          drop.speed = prefersReducedMotion ? 0.6 : 1.5 + Math.random() * 3.2
         }
       })
 
@@ -139,8 +146,10 @@ export default function JapaneseRain() {
         left: 0,
         width: "100vw",
         height: "100vh",
-        zIndex: 2,
+        zIndex: 5,
         pointerEvents: "none",
+        opacity: 0.78,
+        mixBlendMode: "screen",
       }}
     />
   )

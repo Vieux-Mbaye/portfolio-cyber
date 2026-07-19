@@ -156,10 +156,10 @@ export default function ExperienceTimeline() {
   const t = content[language]
 
   return (
-    <section ref={ref} className="py-20 px-6 cyber-grid bg-slate-900">
+    <section ref={ref} className="py-14 sm:py-20 px-4 sm:px-6 cyber-grid bg-slate-900/82">
       <div className="max-w-7xl mx-auto">
         <motion.div initial={{ opacity: 0, y: 50 }} animate={isVisible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8 }} className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+          <h2 className="text-[clamp(2rem,9vw,3.5rem)] font-bold mb-4 text-white leading-tight">
             {t.title.split("&")[0]}& <span className="text-emerald-300 neon-text">{t.title.split("&")[1]}</span>
           </h2>
           <p className="text-lg md:text-xl max-w-4xl mx-auto text-slate-200">{t.intro}</p>
@@ -172,7 +172,7 @@ export default function ExperienceTimeline() {
             <motion.div key={exp.title} initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40 }} animate={isVisible ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.8, delay: 0.2 + index * 0.12 }} className={`relative flex items-stretch mb-10 md:mb-12 ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}>
               <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full cyber-glow z-10 bg-emerald-300"></div>
               <div className={`w-full md:w-5/12 ${index % 2 === 0 ? "md:pr-8" : "md:pl-8"}`}>
-                <div className="cyber-border rounded-lg p-6 h-full transition-all duration-300 bg-slate-800/80 hover:bg-slate-800">
+                <div className="cyber-border rounded-lg p-5 sm:p-6 h-full transition-all duration-300 bg-slate-800/88 hover:bg-slate-800 min-w-0">
                   <div className="mb-4">
                     <span className="inline-block px-3 py-1 text-xs rounded-full mb-3 bg-emerald-950 text-emerald-100 border border-emerald-700">{exp.type}</span>
                     <h3 className="text-xl font-bold mb-2 text-white">{exp.title}</h3>

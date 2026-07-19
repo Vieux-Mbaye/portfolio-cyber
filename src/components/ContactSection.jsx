@@ -124,7 +124,7 @@ export default function ContactSection() {
   }
 
   return (
-    <section ref={ref} className="py-12 sm:py-20 px-4 sm:px-6 bg-slate-900 cyber-grid">
+    <section ref={ref} className="py-12 sm:py-20 px-4 sm:px-6 bg-slate-900/82 cyber-grid">
       <div className="max-w-6xl mx-auto">
         <motion.div initial={{ opacity: 0, y: 50 }} animate={isVisible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8 }} className="text-center mb-12 sm:mb-16">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
@@ -138,7 +138,7 @@ export default function ContactSection() {
             <h3 className="text-xl sm:text-2xl font-bold text-emerald-300 mb-6 sm:mb-8">{t.infoTitle}</h3>
             <div className="space-y-4 sm:space-y-6">
               {t.methods.map(([icon, title, value, description, href], index) => (
-                <motion.a key={title} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noopener noreferrer" : undefined} initial={{ opacity: 0, y: 20 }} animate={isVisible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }} className="cyber-border rounded-lg p-4 sm:p-6 bg-slate-800/50 hover:bg-slate-800 transition-all duration-300 group block">
+                <motion.a key={title} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noopener noreferrer" : undefined} initial={{ opacity: 0, y: 20 }} animate={isVisible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }} className="cyber-border rounded-lg p-4 sm:p-6 bg-slate-800/82 hover:bg-slate-800 transition-all duration-300 group block">
                   <div className="flex items-center gap-3 sm:gap-4">
                     <div className="text-2xl sm:text-3xl bg-emerald-950/40 p-2 sm:p-3 rounded-lg border border-emerald-700/60 flex-shrink-0 text-emerald-300 font-bold w-12 h-12 flex items-center justify-center">{icon}</div>
                     <div className="min-w-0 flex-1">
@@ -151,7 +151,7 @@ export default function ContactSection() {
               ))}
             </div>
 
-            <motion.div initial={{ opacity: 0 }} animate={isVisible ? { opacity: 1 } : {}} transition={{ duration: 0.8, delay: 0.8 }} className="mt-6 sm:mt-8 cyber-border rounded-lg p-4 sm:p-6 bg-slate-800/50">
+            <motion.div initial={{ opacity: 0 }} animate={isVisible ? { opacity: 1 } : {}} transition={{ duration: 0.8, delay: 0.8 }} className="mt-6 sm:mt-8 cyber-border rounded-lg p-4 sm:p-6 bg-slate-800/82">
               <div className="flex items-center gap-3">
                 <div className="w-3 h-3 bg-emerald-300 rounded-full animate-pulse flex-shrink-0"></div>
                 <span className="text-white font-medium text-sm sm:text-base">{t.available}</span>
@@ -163,7 +163,7 @@ export default function ContactSection() {
             </motion.div>
           </motion.div>
 
-          <motion.div initial={{ opacity: 0, x: 50 }} animate={isVisible ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.8, delay: 0.4 }} className="cyber-border rounded-lg p-4 sm:p-6 lg:p-8 bg-slate-800/50">
+          <motion.div initial={{ opacity: 0, x: 50 }} animate={isVisible ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.8, delay: 0.4 }} className="cyber-border rounded-lg p-4 sm:p-6 lg:p-8 bg-slate-800/82">
             <h3 className="text-xl sm:text-2xl font-bold text-emerald-300 mb-4 sm:mb-6">{t.formTitle}</h3>
 
             {submitStatus === "success" && (

@@ -268,34 +268,34 @@ export default function ProjectsGallery() {
   const filteredProjects = filter === "all" ? t.projects : t.projects.filter((project) => project.category === filter)
 
   return (
-    <section ref={ref} className="py-20 px-6 bg-slate-950 cyber-grid">
+    <section ref={ref} className="py-14 sm:py-20 px-4 sm:px-6 bg-slate-950/82 cyber-grid">
       <div className="max-w-7xl mx-auto">
         <motion.div initial={{ opacity: 0, y: 50 }} animate={isVisible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8 }} className="text-center mb-14">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          <h2 className="text-[clamp(2rem,9vw,3.5rem)] font-bold text-white mb-4 leading-tight">
             {t.title.split(" ")[0]} <span className="text-emerald-300 neon-text">{t.title.split(" ").slice(1).join(" ")}</span>
           </h2>
-          <p className="text-lg md:text-xl text-slate-200 max-w-4xl mx-auto mb-8">{t.intro}</p>
+          <p className="text-base md:text-xl text-slate-200 max-w-4xl mx-auto mb-8">{t.intro}</p>
 
           <div className="flex flex-wrap justify-center gap-3">
             {t.categories.map(([id, name]) => (
-              <button key={id} onClick={() => setFilter(id)} className={`px-5 py-2 rounded-lg font-medium transition-all duration-300 ${filter === id ? "bg-emerald-600 text-white cyber-glow" : "bg-slate-800 text-slate-200 hover:bg-slate-700 hover:text-emerald-200"}`}>
+              <button key={id} onClick={() => setFilter(id)} className={`px-4 sm:px-5 py-2 rounded-lg font-medium transition-all duration-300 text-sm sm:text-base ${filter === id ? "bg-emerald-600 text-white cyber-glow" : "bg-slate-800/88 text-slate-200 hover:bg-slate-700 hover:text-emerald-200"}`}>
                 {name}
               </button>
             ))}
           </div>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
+        <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-5 sm:gap-8">
           {filteredProjects.map((project, index) => (
-            <motion.article key={project.title} initial={{ opacity: 0, y: 40 }} animate={isVisible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7, delay: index * 0.08 }} className="cyber-border rounded-lg overflow-hidden bg-slate-900/80 hover:bg-slate-900 transition-all duration-300 group flex flex-col">
+            <motion.article key={project.title} initial={{ opacity: 0, y: 40 }} animate={isVisible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7, delay: index * 0.08 }} className="cyber-border rounded-lg overflow-hidden bg-slate-900/88 hover:bg-slate-900 transition-all duration-300 group flex flex-col min-w-0">
               <div className="relative overflow-hidden">
                 <img src={project.image} alt="" loading="lazy" className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" />
                 <div className="absolute inset-0 bg-slate-950/20 group-hover:bg-slate-950/10 transition-colors duration-300"></div>
               </div>
 
-              <div className="p-6 flex flex-col flex-1">
+              <div className="p-5 sm:p-6 flex flex-col flex-1 min-w-0">
                 <div className="flex justify-between items-start gap-3 mb-3">
-                  <h3 className="text-xl font-bold text-white">{project.title}</h3>
+                  <h3 className="text-lg sm:text-xl font-bold text-white leading-snug break-words">{project.title}</h3>
                   <span className="px-2 py-1 text-xs rounded flex-shrink-0 bg-emerald-950/70 text-emerald-100 border border-emerald-700">{project.status}</span>
                 </div>
 

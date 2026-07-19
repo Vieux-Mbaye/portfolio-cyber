@@ -29,9 +29,9 @@ const formatDate = (date) =>
     <JapaneseRain client:load />
 
     <main class="relative z-10">
-      <section class="min-h-screen px-6 py-20 cyber-grid">
+      <section class="min-h-screen px-4 sm:px-6 py-16 sm:py-20 cyber-grid bg-slate-950/82">
         <div class="max-w-7xl mx-auto">
-          <nav class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-16">
+          <nav class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-12 sm:mb-16">
             <a href="/" class="text-emerald-300 hover:text-emerald-200 font-bold">← Portfolio</a>
             <a href="/admin/" class="inline-flex w-fit px-4 py-2 rounded border border-emerald-600 text-emerald-200 hover:bg-emerald-600 hover:text-slate-950 transition-colors">
               Administration
@@ -39,25 +39,25 @@ const formatDate = (date) =>
           </nav>
 
           <div class="max-w-4xl mb-14">
-            <p class="text-sm uppercase tracking-[0.25em] text-emerald-200 mb-4">Publications</p>
-            <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">
+            <p class="text-xs sm:text-sm uppercase tracking-[0.2em] sm:tracking-[0.25em] text-emerald-200 mb-4">Publications</p>
+            <h1 class="text-[clamp(2.4rem,11vw,4.5rem)] font-bold text-white mb-6 leading-tight">
               Articles <span class="text-emerald-300 neon-text">cybersécurité</span>
             </h1>
-            <p class="text-lg md:text-xl text-slate-200 leading-relaxed">
+            <p class="text-base md:text-xl text-slate-200 leading-relaxed">
               Analyses, retours d’expérience et notes techniques sur la cybersécurité IT/OT, le SOC Engineering,
               l’automatisation, la sécurité des systèmes, le DevSecOps et l’analyse offensive/défensive.
             </p>
           </div>
 
-          <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
+          <div class="grid sm:grid-cols-2 xl:grid-cols-3 gap-5 sm:gap-8">
             {articles.map((article) => (
-              <article class="cyber-border rounded-lg overflow-hidden bg-slate-900/80 hover:bg-slate-900 transition-colors flex flex-col">
+              <article class="cyber-border rounded-lg overflow-hidden bg-slate-900/88 hover:bg-slate-900 transition-colors flex flex-col min-w-0">
                 {article.data.cover && (
                   <img src={article.data.cover} alt="" loading="lazy" class="w-full h-48 object-cover" />
                 )}
-                <div class="p-6 flex flex-col flex-1">
+                <div class="p-5 sm:p-6 flex flex-col flex-1 min-w-0">
                   <div class="text-sm text-emerald-200 mb-3">{formatDate(article.data.publishDate)}</div>
-                  <h2 class="text-xl font-bold text-white mb-3">{article.data.title}</h2>
+                  <h2 class="text-lg sm:text-xl font-bold text-white mb-3 leading-snug break-words">{article.data.title}</h2>
                   <p class="text-slate-200 leading-relaxed mb-5">{article.data.description}</p>
                   <div class="flex flex-wrap gap-2 mb-6">
                     {article.data.tags.map((tag) => (

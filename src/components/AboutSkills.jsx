@@ -147,16 +147,16 @@ export default function AboutSkills() {
   ]
 
   const t = content[language]
-  const cardClass = "cyber-border rounded-lg bg-slate-900/60"
+  const cardClass = "cyber-border rounded-lg bg-slate-900/82"
 
   return (
-    <section ref={ref} className="py-20 px-6 cyber-grid bg-slate-950">
+    <section ref={ref} className="py-14 sm:py-20 px-4 sm:px-6 cyber-grid bg-slate-950/82">
       <div className="max-w-7xl mx-auto">
         <motion.div initial={{ opacity: 0, y: 50 }} animate={isVisible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8 }} className="mb-14">
-          <h2 className="text-center text-4xl md:text-5xl font-bold mb-6 text-white">
+          <h2 className="text-center text-[clamp(2rem,9vw,3.5rem)] font-bold mb-6 text-white leading-tight">
             {t.heading.split("&")[0]}& <span className="text-emerald-300 neon-text">{t.heading.split("&")[1]}</span>
           </h2>
-          <div className="max-w-6xl mx-auto grid lg:grid-cols-[0.85fr_1.4fr] gap-8 items-center">
+          <div className="max-w-6xl mx-auto grid lg:grid-cols-[0.85fr_1.4fr] gap-6 sm:gap-8 items-center">
             <div className="cyber-border rounded-lg overflow-hidden bg-slate-900/60">
               <img src="/esp-ssi-2026.jpeg" alt="Vieux Mbaye NDOUR SSI" loading="lazy" className="w-full h-full max-h-[520px] object-cover" />
             </div>
@@ -168,7 +168,7 @@ export default function AboutSkills() {
           </div>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6 mb-14">
+        <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-5 sm:gap-6 mb-14">
           {t.domains.map(([title, items], index) => (
             <motion.div key={title} initial={{ opacity: 0, y: 30 }} animate={isVisible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: index * 0.08 }} className={`${cardClass} p-6`}>
               <h3 className="text-xl font-bold text-emerald-300 mb-4">{title}</h3>
@@ -184,12 +184,12 @@ export default function AboutSkills() {
           ))}
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8 mb-14">
+        <div className="grid lg:grid-cols-3 gap-6 sm:gap-8 mb-14">
           <motion.div initial={{ opacity: 0, x: -40 }} animate={isVisible ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.8 }} className={`${cardClass} p-6 lg:col-span-2`}>
             <h3 className="text-2xl font-bold text-emerald-300 mb-6">{t.skillTitle}</h3>
-            <div className="grid md:grid-cols-2 gap-5">
+            <div className="grid sm:grid-cols-2 gap-5">
               {t.skillGroups.map(([title, skills]) => (
-                <div key={title} className="rounded-lg bg-slate-800/50 p-4">
+                <div key={title} className="rounded-lg bg-slate-800/72 p-4 min-w-0">
                   <h4 className="font-semibold text-white mb-3">{title}</h4>
                   <div className="flex flex-wrap gap-2">
                     {skills.map((skill) => (
@@ -223,12 +223,12 @@ export default function AboutSkills() {
           </motion.div>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8 mb-14">
+        <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 mb-14">
           <motion.div initial={{ opacity: 0, y: 40 }} animate={isVisible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8 }} className={`${cardClass} p-6`}>
             <h3 className="text-2xl font-bold text-emerald-300 mb-6">{t.educationTitle}</h3>
             <div className="space-y-5">
               {t.education.map((formation) => (
-                <div key={formation.title} className="rounded-lg bg-slate-800/50 p-4">
+                <div key={formation.title} className="rounded-lg bg-slate-800/72 p-4">
                   <div className="text-sm text-emerald-200 mb-1">{formation.period}</div>
                   <h4 className="font-bold text-white">{formation.title}</h4>
                   <p className="text-sm text-slate-300 mb-3">{formation.school}</p>
@@ -243,7 +243,7 @@ export default function AboutSkills() {
             <h3 className="text-2xl font-bold text-emerald-300 mb-6">{t.publicationsTitle}</h3>
             <div className="space-y-4">
               {publications.map((publication) => (
-                <a key={publication.title} href={publication.link} target="_blank" rel="noopener noreferrer" className="block rounded-lg bg-slate-800/50 p-4 hover:bg-slate-800 transition-colors">
+                <a key={publication.title} href={publication.link} target="_blank" rel="noopener noreferrer" className="block rounded-lg bg-slate-800/72 p-4 hover:bg-slate-800 transition-colors">
                   <h4 className="font-bold text-white mb-2">{publication.title}</h4>
                   <p className="text-sm text-slate-200 leading-relaxed">{publication.description}</p>
                   <span className="inline-block mt-3 text-sm text-emerald-300">

@@ -85,10 +85,10 @@ export default function CyberHero() {
 
   return (
     <section
-      className="min-h-screen flex items-center justify-center relative overflow-hidden cyber-grid bg-slate-950"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden cyber-grid bg-slate-950/90"
     >
       <div
-        className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900/70 to-slate-950"
+        className="absolute inset-0 bg-gradient-to-br from-slate-950/90 via-slate-900/60 to-slate-950/88"
       ></div>
 
       <div className="absolute inset-0">
@@ -133,31 +133,31 @@ export default function CyberHero() {
           >
             {
               [
-                "SOC ENGINEERING",
-                "INCIDENT RESPONSE",
-                "SOAR WORKFLOW",
-                "IT/OT SECURITY",
-                "THREAT HUNTING",
-                "DIGITAL FORENSICS",
-                "DEVSECOPS",
-                "AI SECURITY AGENTS",
+                "監視",
+                "防御",
+                "検知",
+                "解析",
+                "暗号",
+                "復旧",
+                "安全",
+                "脆弱性",
               ][Math.floor(Math.random() * 8)]
             }
           </motion.div>
         ))}
       </div>
 
-      <div className="relative z-10 text-center max-w-6xl mx-auto px-6 pt-20">
+      <div className="relative z-10 text-center w-full max-w-6xl mx-auto px-4 sm:px-6 pt-24 pb-10">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
           className="mb-8"
         >
-          <div className="text-sm md:text-base mb-3 font-light text-emerald-200 tracking-[0.25em] uppercase">
+          <div className="text-xs sm:text-sm md:text-base mb-3 font-light text-emerald-200 tracking-[0.18em] sm:tracking-[0.25em] uppercase">
             VIEUX MBAYE NDOUR
           </div>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 leading-tight">
+          <h1 className="text-[clamp(2.15rem,10vw,4.5rem)] lg:text-7xl font-bold mb-4 leading-[1.05] break-words">
             <motion.span
               className="inline-block text-emerald-300"
               animate={{
@@ -177,7 +177,7 @@ export default function CyberHero() {
               {text}
             </motion.span>
           </h1>
-          <p className="text-base md:text-xl max-w-5xl mx-auto text-slate-100 font-semibold">
+          <p className="text-sm sm:text-base md:text-xl max-w-5xl mx-auto text-slate-100 font-semibold leading-relaxed">
             {t.subtitle}
           </p>
         </motion.div>
@@ -186,7 +186,7 @@ export default function CyberHero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2, duration: 1 }}
-          className="text-base md:text-xl mb-8 font-light max-w-4xl mx-auto text-slate-200 leading-relaxed"
+          className="text-sm sm:text-base md:text-xl mb-8 font-light max-w-4xl mx-auto text-slate-200 leading-relaxed"
         >
           {t.description}
         </motion.p>
@@ -195,14 +195,14 @@ export default function CyberHero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 3, duration: 1 }}
-          className="flex flex-col sm:flex-row flex-wrap gap-3 justify-center"
+          className="grid grid-cols-1 sm:flex sm:flex-row sm:flex-wrap gap-3 justify-center"
         >
           <button
             onClick={() => {
               const element = document.querySelector("#projects")
               if (element) element.scrollIntoView({ behavior: "smooth" })
             }}
-            className="px-6 py-3 font-semibold rounded-lg transition-all duration-300 cyber-glow bg-emerald-600 hover:bg-emerald-500 text-white"
+            className="w-full sm:w-auto px-5 sm:px-6 py-3 font-semibold rounded-lg transition-all duration-300 cyber-glow bg-emerald-600 hover:bg-emerald-500 text-white"
           >
             {t.projects}
           </button>
@@ -210,13 +210,13 @@ export default function CyberHero() {
             href="https://www.linkedin.com/in/vieux-mbaye-ndour-947831271/"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-6 py-3 font-semibold rounded-lg transition-all duration-300 border border-emerald-400 text-emerald-200 hover:bg-emerald-500 hover:text-slate-950"
+            className="w-full sm:w-auto px-5 sm:px-6 py-3 font-semibold rounded-lg transition-all duration-300 border border-emerald-400 text-emerald-200 hover:bg-emerald-500 hover:text-slate-950"
           >
             {t.linkedin}
           </a>
           <a
             href="/articles/"
-            className="px-6 py-3 font-semibold rounded-lg transition-all duration-300 border border-emerald-400 text-emerald-200 hover:bg-emerald-500 hover:text-slate-950"
+            className="w-full sm:w-auto px-5 sm:px-6 py-3 font-semibold rounded-lg transition-all duration-300 border border-emerald-400 text-emerald-200 hover:bg-emerald-500 hover:text-slate-950"
           >
             {t.articles}
           </a>
@@ -225,7 +225,7 @@ export default function CyberHero() {
               const element = document.querySelector("#contact")
               if (element) element.scrollIntoView({ behavior: "smooth" })
             }}
-            className="px-6 py-3 border font-semibold rounded-lg transition-all duration-300 border-emerald-400 text-emerald-200 hover:bg-emerald-500 hover:text-slate-950"
+            className="w-full sm:w-auto px-5 sm:px-6 py-3 border font-semibold rounded-lg transition-all duration-300 border-emerald-400 text-emerald-200 hover:bg-emerald-500 hover:text-slate-950"
           >
             {t.contact}
           </button>
@@ -235,16 +235,16 @@ export default function CyberHero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 4, duration: 1 }}
-          className="mt-16 grid grid-cols-1 md:grid-cols-4 gap-6 text-center"
+          className="mt-12 sm:mt-16 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 text-center"
         >
           {[
             ...t.stats,
           ].map((stat) => (
             <div
               key={stat.label}
-              className="cyber-border rounded-lg p-4 bg-slate-900/50"
+              className="cyber-border rounded-lg p-3 sm:p-4 bg-slate-900/65"
             >
-              <div className="text-3xl font-bold text-emerald-300">{stat.value}</div>
+              <div className="text-2xl sm:text-3xl font-bold text-emerald-300">{stat.value}</div>
               <div className="text-sm text-slate-200">{stat.label}</div>
             </div>
           ))}
@@ -254,7 +254,7 @@ export default function CyberHero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 5, duration: 1 }}
-          className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4 text-center"
+          className="mt-10 sm:mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-center"
         >
           {t.pillars.map(([name, detail]) => (
             <div key={name} className="text-sm text-white">

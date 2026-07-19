@@ -59,11 +59,11 @@ export default function Navigation() {
         isScrolled ? "bg-slate-950/95 backdrop-blur-sm cyber-border" : "bg-transparent"
       }`}
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
         <div className="flex items-center justify-between">
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="text-lg sm:text-xl font-bold cursor-pointer"
+            className="text-base sm:text-lg xl:text-xl font-bold cursor-pointer max-w-[72vw] truncate"
             onClick={() => scrollToSection("#hero")}
           >
             <motion.span
@@ -85,14 +85,14 @@ export default function Navigation() {
             </motion.span>
           </motion.div>
 
-          <div className="hidden md:flex items-center gap-5 lg:gap-7">
+          <div className="hidden lg:flex items-center gap-4 xl:gap-7">
             {navItems.map((item) => (
               <motion.button
                 key={item.name}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => scrollToSection(item.href)}
-                className="text-slate-200 hover:text-emerald-300 transition-colors font-medium text-sm lg:text-base"
+                className="text-slate-200 hover:text-emerald-300 transition-colors font-medium text-sm xl:text-base"
               >
                 {item.name}
               </motion.button>
@@ -106,7 +106,7 @@ export default function Navigation() {
             </button>
           </div>
 
-          <div className="md:hidden">
+          <div className="lg:hidden">
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
@@ -134,7 +134,7 @@ export default function Navigation() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="md:hidden mt-4 pb-4"
+            className="lg:hidden mt-4 pb-4"
           >
             <div className="flex flex-col gap-3 bg-slate-900/95 rounded-lg p-4 cyber-border">
               {navItems.map((item) => (
