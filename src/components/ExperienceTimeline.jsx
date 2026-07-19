@@ -185,7 +185,7 @@ export default function ExperienceTimeline() {
                     {exp.description.map((item) => (
                       <div key={item} className="flex items-start gap-3 text-sm text-slate-200">
                         <span className="mt-2 w-1.5 h-1.5 rounded-full bg-emerald-300 flex-shrink-0"></span>
-                        <span>{item}</span>
+                        <span className="text-justify">{item}</span>
                       </div>
                     ))}
                   </div>

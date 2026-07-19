@@ -85,7 +85,7 @@ export default function CyberHero() {
 
   return (
     <section
-      className="min-h-screen flex items-center justify-center relative overflow-hidden cyber-grid bg-slate-950/82"
+      className="min-h-[100svh] flex items-start lg:items-center justify-center relative overflow-x-hidden cyber-grid bg-slate-950/82"
     >
       <div
         className="absolute inset-0 bg-gradient-to-br from-slate-950/80 via-slate-900/45 to-slate-950/78"
@@ -112,7 +112,7 @@ export default function CyberHero() {
         ))}
       </div>
 
-      <div className="relative z-10 text-center w-full max-w-6xl mx-auto px-4 sm:px-6 pt-24 pb-10">
+      <div className="relative z-10 text-center w-full max-w-6xl mx-auto px-4 sm:px-6 pt-28 sm:pt-32 lg:pt-24 pb-14 sm:pb-16">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -151,7 +151,7 @@ export default function CyberHero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2, duration: 1 }}
-          className="readability-panel px-4 py-4 text-sm sm:text-base md:text-xl mb-8 font-light max-w-4xl mx-auto text-slate-200 leading-relaxed"
+          className="readability-panel px-4 py-4 text-sm sm:text-base md:text-xl mb-8 font-light max-w-4xl mx-auto text-slate-200 leading-relaxed text-justify"
         >
           {t.description}
         </motion.p>
@@ -222,7 +222,7 @@ export default function CyberHero() {
           className="mt-10 sm:mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-center"
         >
           {t.pillars.map(([name, detail]) => (
-            <div key={name} className="text-sm text-white">
+            <div key={name} className="readability-panel p-3 text-sm text-white">
               <div className="font-semibold">{name}</div>
               <div className="text-xs text-slate-400">{detail}</div>
             </div>

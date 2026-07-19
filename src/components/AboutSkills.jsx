@@ -218,7 +218,7 @@ export default function AboutSkills() {
 
             <div className={`${cardClass} p-6`}>
               <h3 className="text-xl font-bold text-emerald-300 mb-4">{t.positioningTitle}</h3>
-              <p className="text-sm text-slate-200 leading-relaxed">{t.positioning}</p>
+              <p className="text-sm text-slate-200 leading-relaxed text-justify">{t.positioning}</p>
             </div>
           </motion.div>
         </div>
@@ -232,8 +232,8 @@ export default function AboutSkills() {
                   <div className="text-sm text-emerald-200 mb-1">{formation.period}</div>
                   <h4 className="font-bold text-white">{formation.title}</h4>
                   <p className="text-sm text-slate-300 mb-3">{formation.school}</p>
-                  <p className="text-sm text-slate-200 leading-relaxed mb-2">{formation.description}</p>
-                  <p className="text-sm text-emerald-100 leading-relaxed">{formation.note}</p>
+                  <p className="text-sm text-slate-200 leading-relaxed mb-2 text-justify">{formation.description}</p>
+                  <p className="text-sm text-emerald-100 leading-relaxed text-justify">{formation.note}</p>
                 </div>
               ))}
             </div>
@@ -245,7 +245,7 @@ export default function AboutSkills() {
               {publications.map((publication) => (
                 <a key={publication.title} href={publication.link} target="_blank" rel="noopener noreferrer" className="block rounded-lg bg-slate-800/72 p-4 hover:bg-slate-800 transition-colors">
                   <h4 className="font-bold text-white mb-2">{publication.title}</h4>
-                  <p className="text-sm text-slate-200 leading-relaxed">{publication.description}</p>
+                  <p className="text-sm text-slate-200 leading-relaxed text-justify">{publication.description}</p>
                   <span className="inline-block mt-3 text-sm text-emerald-300">
                     {t.read} &rarr;
                   </span>

@@ -156,7 +156,7 @@ export default function ContactSection() {
                 <div className="w-3 h-3 bg-emerald-300 rounded-full animate-pulse flex-shrink-0"></div>
                 <span className="text-white font-medium text-sm sm:text-base">{t.available}</span>
               </div>
-              <p className="text-slate-300 text-xs sm:text-sm mt-2">{t.availableText}</p>
+              <p className="text-slate-300 text-xs sm:text-sm mt-2 text-justify">{t.availableText}</p>
               <a href={medium} target="_blank" rel="noopener noreferrer" className="inline-flex mt-4 text-sm text-emerald-300 hover:text-emerald-200">
                 {t.medium} &rarr;
               </a>

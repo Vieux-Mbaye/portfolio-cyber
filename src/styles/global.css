@@ -142,6 +142,11 @@ body {
   backdrop-filter: blur(2px);
 }
 
+.readability-panel p,
+.readability-panel li {
+  text-align: justify;
+}
+
 /* Added utility classes for high contrast text */
 .text-high-contrast {
   color: oklch(1 0 0); /* Pure white for maximum contrast */
@@ -154,6 +159,7 @@ body {
 .article-content {
   color: rgb(226 232 240);
   line-height: 1.85;
+  text-align: justify;
 }
 
 .article-content h2 {
@@ -179,6 +185,11 @@ body {
 .article-content blockquote,
 .article-content iframe {
   margin-bottom: 1.25rem;
+}
+
+.article-content p,
+.article-content li {
+  text-align: justify;
 }
 
 .article-content strong {

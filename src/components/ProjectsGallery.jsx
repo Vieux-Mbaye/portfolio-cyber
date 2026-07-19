@@ -299,8 +299,8 @@ export default function ProjectsGallery() {
                   <span className="px-2 py-1 text-xs rounded flex-shrink-0 bg-emerald-950/70 text-emerald-100 border border-emerald-700">{project.status}</span>
                 </div>
 
-                <p className="text-slate-200 mb-4 leading-relaxed">{project.description}</p>
-                <p className="text-sm text-emerald-100 mb-4 leading-relaxed">{project.note}</p>
+                <p className="readability-panel px-3 py-3 text-slate-200 mb-4 leading-relaxed text-justify">{project.description}</p>
+                <p className="readability-panel px-3 py-2 text-sm text-emerald-100 mb-4 leading-relaxed text-justify">{project.note}</p>
 
                 <div className="flex flex-wrap gap-2 mt-auto">
                   {project.technologies.map((tech) => (
