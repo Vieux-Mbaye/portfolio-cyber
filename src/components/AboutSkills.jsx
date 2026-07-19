@@ -160,7 +160,7 @@ export default function AboutSkills() {
             <div className="cyber-border rounded-lg overflow-hidden bg-slate-900/60">
               <img src="/esp-ssi-2026.jpeg" alt="Vieux Mbaye NDOUR SSI" loading="lazy" className="w-full h-full max-h-[520px] object-cover" />
             </div>
-            <div className="space-y-5 text-slate-200 leading-relaxed">
+            <div className="readability-panel p-5 sm:p-6 space-y-5 text-slate-200 leading-relaxed">
               {t.paragraphs.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}

@@ -274,7 +274,7 @@ export default function ProjectsGallery() {
           <h2 className="text-[clamp(2rem,9vw,3.5rem)] font-bold text-white mb-4 leading-tight">
             {t.title.split(" ")[0]} <span className="text-emerald-300 neon-text">{t.title.split(" ").slice(1).join(" ")}</span>
           </h2>
-          <p className="text-base md:text-xl text-slate-200 max-w-4xl mx-auto mb-8">{t.intro}</p>
+          <p className="readability-panel px-5 py-4 text-base md:text-xl text-slate-200 max-w-4xl mx-auto mb-8 leading-relaxed">{t.intro}</p>
 
           <div className="flex flex-wrap justify-center gap-3">
             {t.categories.map(([id, name]) => (

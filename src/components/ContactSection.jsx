@@ -130,7 +130,7 @@ export default function ContactSection() {
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
             {t.title.split("-")[0]}<span className="text-emerald-300 neon-text">{t.title.includes("-") ? `-${t.title.split("-")[1]}` : ""}</span>
           </h2>
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-200 max-w-3xl mx-auto">{t.intro}</p>
+          <p className="readability-panel px-5 py-4 text-sm sm:text-base md:text-lg lg:text-xl text-slate-200 max-w-3xl mx-auto leading-relaxed">{t.intro}</p>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12">

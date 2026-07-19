@@ -162,7 +162,7 @@ export default function ExperienceTimeline() {
           <h2 className="text-[clamp(2rem,9vw,3.5rem)] font-bold mb-4 text-white leading-tight">
             {t.title.split("&")[0]}& <span className="text-emerald-300 neon-text">{t.title.split("&")[1]}</span>
           </h2>
-          <p className="text-lg md:text-xl max-w-4xl mx-auto text-slate-200">{t.intro}</p>
+          <p className="readability-panel px-5 py-4 text-base md:text-xl max-w-4xl mx-auto text-slate-200 leading-relaxed">{t.intro}</p>
         </motion.div>
 
         <div className="relative">

@@ -142,7 +142,7 @@ export default function CyberHero() {
               {text}
             </motion.span>
           </h1>
-          <p className="text-sm sm:text-base md:text-xl max-w-5xl mx-auto text-slate-100 font-semibold leading-relaxed">
+          <p className="readability-panel px-4 py-3 text-sm sm:text-base md:text-xl max-w-5xl mx-auto text-slate-100 font-semibold leading-relaxed">
             {t.subtitle}
           </p>
         </motion.div>
@@ -151,7 +151,7 @@ export default function CyberHero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2, duration: 1 }}
-          className="text-sm sm:text-base md:text-xl mb-8 font-light max-w-4xl mx-auto text-slate-200 leading-relaxed"
+          className="readability-panel px-4 py-4 text-sm sm:text-base md:text-xl mb-8 font-light max-w-4xl mx-auto text-slate-200 leading-relaxed"
         >
           {t.description}
         </motion.p>
