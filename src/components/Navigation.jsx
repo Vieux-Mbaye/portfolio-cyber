@@ -2,10 +2,12 @@
 
 import { motion } from "framer-motion"
 import { useState, useEffect } from "react"
+import { usePortfolioLanguage } from "./usePortfolioLanguage"
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [language, setLanguage] = usePortfolioLanguage()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,13 +17,24 @@ export default function Navigation() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const navItems = [
-    { name: "Accueil", href: "#hero" },
-    { name: "A propos", href: "#about" },
-    { name: "Experience", href: "#experience" },
-    { name: "Projets", href: "#projects" },
-    { name: "Contact", href: "#contact" },
-  ]
+  const navItems =
+    language === "fr"
+      ? [
+          { name: "Accueil", href: "#hero" },
+          { name: "À propos", href: "#about" },
+          { name: "Expertise", href: "#about" },
+          { name: "Expérience", href: "#experience" },
+          { name: "Projets", href: "#projects" },
+          { name: "Contact", href: "#contact" },
+        ]
+      : [
+          { name: "Home", href: "#hero" },
+          { name: "About", href: "#about" },
+          { name: "Expertise", href: "#about" },
+          { name: "Experience", href: "#experience" },
+          { name: "Projects", href: "#projects" },
+          { name: "Contact", href: "#contact" },
+        ]
 
   const scrollToSection = (href) => {
     const element = document.querySelector(href)
@@ -47,12 +60,12 @@ export default function Navigation() {
             onClick={() => scrollToSection("#hero")}
           >
             <motion.span
-              className="text-emerald-400"
+              className="text-emerald-300"
               animate={{
                 textShadow: [
-                  "0 0 20px rgba(52, 211, 153, 0.5), 0 0 40px rgba(52, 211, 153, 0.3)",
-                  "0 0 30px rgba(52, 211, 153, 0.7), 0 0 60px rgba(52, 211, 153, 0.4)",
-                  "0 0 20px rgba(52, 211, 153, 0.5), 0 0 40px rgba(52, 211, 153, 0.3)",
+                  "0 0 18px rgba(110, 231, 183, 0.45)",
+                  "0 0 28px rgba(110, 231, 183, 0.65)",
+                  "0 0 18px rgba(110, 231, 183, 0.45)",
                 ],
               }}
               transition={{
@@ -61,22 +74,29 @@ export default function Navigation() {
                 ease: "easeInOut",
               }}
             >
-            
+              Vieux Mbaye NDOUR
             </motion.span>
           </motion.div>
 
-          <div className="hidden md:flex gap-6 lg:gap-8">
+          <div className="hidden md:flex items-center gap-5 lg:gap-7">
             {navItems.map((item) => (
               <motion.button
                 key={item.name}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => scrollToSection(item.href)}
-                className="text-emerald-200 hover:text-emerald-400 transition-colors font-medium text-sm lg:text-base"
+                className="text-slate-200 hover:text-emerald-300 transition-colors font-medium text-sm lg:text-base"
               >
                 {item.name}
               </motion.button>
             ))}
+            <button
+              onClick={() => setLanguage(language === "fr" ? "en" : "fr")}
+              className="px-3 py-1.5 rounded border border-emerald-500/70 text-emerald-200 hover:bg-emerald-500 hover:text-slate-950 transition-colors text-sm font-semibold"
+              aria-label={language === "fr" ? "Switch to English" : "Passer en français"}
+            >
+              {language === "fr" ? "EN" : "FR"}
+            </button>
           </div>
 
           <div className="md:hidden">
@@ -84,7 +104,8 @@ export default function Navigation() {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-emerald-400 hover:text-emerald-600 transition-colors p-2"
+              className="text-emerald-300 hover:text-emerald-200 transition-colors p-2"
+              aria-label="Ouvrir le menu"
             >
               <div className="w-6 h-6 flex flex-col justify-center items-center">
                 <span
@@ -114,11 +135,20 @@ export default function Navigation() {
                   key={item.name}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => scrollToSection(item.href)}
-                  className="text-emerald-200 hover:text-emerald-400 transition-colors font-medium text-left py-2 px-3 rounded hover:bg-slate-800/50"
+                  className="text-slate-200 hover:text-emerald-300 transition-colors font-medium text-left py-2 px-3 rounded hover:bg-slate-800/50"
                 >
                   {item.name}
                 </motion.button>
               ))}
+              <button
+                onClick={() => {
+                  setLanguage(language === "fr" ? "en" : "fr")
+                  setIsMobileMenuOpen(false)
+                }}
+                className="text-emerald-200 border border-emerald-600 rounded py-2 px-3 text-left font-semibold"
+              >
+                {language === "fr" ? "English version" : "Version française"}
+              </button>
             </div>
           </motion.div>
         )}

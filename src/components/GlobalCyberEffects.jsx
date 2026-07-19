@@ -18,7 +18,8 @@ export default function GlobalCyberEffects() {
     window.addEventListener("resize", resizeCanvas)
 
     const particles = []
-    const particleCount = 50
+    const particleCount = 32
+    let animationId
 
     for (let i = 0; i < particleCount; i++) {
       particles.push({
@@ -34,8 +35,8 @@ export default function GlobalCyberEffects() {
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-      ctx.fillStyle = "rgba(34, 197, 94, 0.1)"
-      ctx.strokeStyle = "rgba(34, 197, 94, 0.2)"
+      ctx.fillStyle = "rgba(52, 211, 153, 0.08)"
+      ctx.strokeStyle = "rgba(52, 211, 153, 0.16)"
 
       particles.forEach((particle, i) => {
         particle.x += particle.vx
@@ -64,13 +65,14 @@ export default function GlobalCyberEffects() {
         })
       })
 
-      requestAnimationFrame(animate)
+      animationId = requestAnimationFrame(animate)
     }
 
     animate()
 
     return () => {
       window.removeEventListener("resize", resizeCanvas)
+      if (animationId) cancelAnimationFrame(animationId)
     }
   }, [])
 

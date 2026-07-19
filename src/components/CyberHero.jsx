@@ -2,24 +2,64 @@
 
 import { motion } from "framer-motion"
 import { useState, useEffect } from "react"
+import { usePortfolioLanguage } from "./usePortfolioLanguage"
 
 export default function CyberHero() {
   const [text, setText] = useState("")
   const [dimensions, setDimensions] = useState({ width: 1200, height: 800 })
-  const [theme] = useState("dark")
-  const [language] = useState("fr")
+  const [language] = usePortfolioLanguage()
 
-  const titles = {
-    fr: "</SSI ENGINEER>",
-    en: "CYBERSECURITY ENGINEERING STUDENT",
+  const content = {
+    fr: {
+      title: "Ingénieur de Conception SSI",
+      subtitle:
+        "Cybersécurité IT/OT | SOC Engineering | SOAR | Sécurité systèmes & réseaux | Pentesting | DevSecOps | Agents IA",
+      description:
+        "Je conçois, sécurise et automatise des environnements numériques et industriels, avec une approche orientée détection, réponse aux incidents, simulation contrôlée et impact opérationnel.",
+      projects: "Voir mes projets",
+      contact: "Me contacter",
+      linkedin: "LinkedIn",
+      medium: "Medium",
+      stats: [
+        { value: "SSI", label: "Ingénieur de conception" },
+        { value: "IT/OT", label: "Cybersécurité industrielle" },
+        { value: "SOAR", label: "Automatisation sécurité" },
+        { value: "IA", label: "Agents appliqués cyber" },
+      ],
+      pillars: [
+        ["SOC Engineering & SOAR", "Triage - Enrichissement - Réponse"],
+        ["Pentesting & Vulnérabilités", "Web - Système - Réseau"],
+        ["Cybersécurité ICS/OT", "Cyber Range - Jumeau numérique"],
+        ["DevSecOps & Agents IA", "CI/CD - Automatisation - Décision"],
+      ],
+    },
+    en: {
+      title: "Information Systems Security Engineer",
+      subtitle:
+        "IT/OT Cybersecurity | SOC Engineering | SOAR | Systems & Network Security | Pentesting | DevSecOps | AI Agents",
+      description:
+        "I design, secure, and automate digital and industrial environments with a focus on detection, incident response, controlled simulation, and operational impact.",
+      projects: "View projects",
+      contact: "Contact me",
+      linkedin: "LinkedIn",
+      medium: "Medium",
+      stats: [
+        { value: "SSI", label: "Security engineer" },
+        { value: "IT/OT", label: "Industrial cybersecurity" },
+        { value: "SOAR", label: "Security automation" },
+        { value: "AI", label: "Cyber AI agents" },
+      ],
+      pillars: [
+        ["SOC Engineering & SOAR", "Triage - Enrichment - Response"],
+        ["Pentesting & Vulnerabilities", "Web - System - Network"],
+        ["ICS/OT Cybersecurity", "Cyber Range - Digital Twin"],
+        ["DevSecOps & AI Agents", "CI/CD - Automation - Decision"],
+      ],
+    },
   }
 
-  const descriptions = {
-    fr: "SOC Analyst & Automatisation SOAR - Pentesting & Red Team - Administrateur Sécurité Réseau & Système - Securite Industrielle ICS/OT - DevSecOps - Telecom & Réseau - IA & Big DATA - Risk Management - Publications Techniques",
-    en: "SOC Analyst & SOAR Automation - Pentesting & Red Team - Industrial Cybersecurity ICS/OT & Cyber Range - SIEM & Threat Hunting - DevSecOps - Technical Publications - ISO-27001 & NIST Compliance",
-  }
-
-  const fullText = titles[language]
+  const t = content[language]
+  const fullText = t.title
 
   useEffect(() => {
     setDimensions({
@@ -43,20 +83,17 @@ export default function CyberHero() {
 
   return (
     <section
-      className={`min-h-screen flex items-center justify-center relative overflow-hidden cyber-grid ${
-        theme === "dark" ? "bg-slate-950" : "bg-gray-50"
-      }`}
+      className="min-h-screen flex items-center justify-center relative overflow-hidden cyber-grid bg-slate-950"
     >
       <div
-        className="absolute inset-0 bg-gradient-to-br from-slate-950 via-emerald-950/20 to-slate-950"
+        className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900/70 to-slate-950"
       ></div>
 
-      {/* Animated background particles */}
       <div className="absolute inset-0">
-        {[...Array(30)].map((_, i) => (
+        {[...Array(18)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-1 h-1 rounded-full bg-emerald-400"
+            className="absolute w-1 h-1 rounded-full bg-emerald-300"
             animate={{
               x: [0, Math.random() * dimensions.width],
               y: [0, Math.random() * dimensions.height],
@@ -73,12 +110,11 @@ export default function CyberHero() {
         ))}
       </div>
 
-      {/* Code rain in hero */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(20)].map((_, i) => (
+        {[...Array(12)].map((_, i) => (
           <motion.div
             key={`code-${i}`}
-            className="absolute text-xs font-mono text-emerald-400 opacity-20"
+            className="absolute text-xs font-mono text-emerald-300 opacity-20"
             style={{
               left: `${(i * 5) % 100}%`,
               top: "-10%",
@@ -95,40 +131,38 @@ export default function CyberHero() {
           >
             {
               [
-                "01001010",
-                "11010011",
-                "10110101",
-                "01110010",
-                "11001001",
-                "sudo rm -rf",
-                "nc -lvp 4444",
-                "python exploit.py",
-                "nmap -sS",
-                "hydra -l admin",
-              ][Math.floor(Math.random() * 10)]
+                "SOC ENGINEERING",
+                "INCIDENT RESPONSE",
+                "SOAR WORKFLOW",
+                "IT/OT SECURITY",
+                "THREAT HUNTING",
+                "DIGITAL FORENSICS",
+                "DEVSECOPS",
+                "AI SECURITY AGENTS",
+              ][Math.floor(Math.random() * 8)]
             }
           </motion.div>
         ))}
       </div>
 
-      <div className="relative z-10 text-center max-w-5xl mx-auto px-6">
+      <div className="relative z-10 text-center max-w-6xl mx-auto px-6 pt-20">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
           className="mb-8"
         >
-          <div className="text-lg md:text-xl mb-2 font-light text-emerald-200">
+          <div className="text-sm md:text-base mb-3 font-light text-emerald-200 tracking-[0.25em] uppercase">
             VIEUX MBAYE NDOUR
           </div>
-          <h1 className="text-5xl md:text-7xl font-bold mb-4">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 leading-tight">
             <motion.span
-              className="inline-block text-emerald-400"
+              className="inline-block text-emerald-300"
               animate={{
                 textShadow: [
-                  "0 0 20px rgba(52, 211, 153, 0.5), 0 0 40px rgba(52, 211, 153, 0.3)",
-                  "0 0 30px rgba(52, 211, 153, 0.7), 0 0 60px rgba(52, 211, 153, 0.4)",
-                  "0 0 20px rgba(52, 211, 153, 0.5), 0 0 40px rgba(52, 211, 153, 0.3)",
+                  "0 0 20px rgba(110, 231, 183, 0.45), 0 0 40px rgba(16, 185, 129, 0.25)",
+                  "0 0 30px rgba(110, 231, 183, 0.65), 0 0 60px rgba(16, 185, 129, 0.35)",
+                  "0 0 20px rgba(110, 231, 183, 0.45), 0 0 40px rgba(16, 185, 129, 0.25)",
                 ],
                 scale: [1, 1.02, 1],
               }}
@@ -141,44 +175,62 @@ export default function CyberHero() {
               {text}
             </motion.span>
           </h1>
+          <p className="text-base md:text-xl max-w-5xl mx-auto text-slate-100 font-semibold">
+            {t.subtitle}
+          </p>
         </motion.div>
 
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2, duration: 1 }}
-          className="text-lg md:text-xl mb-6 font-light max-w-4xl mx-auto text-white"
+          className="text-base md:text-xl mb-8 font-light max-w-4xl mx-auto text-slate-200 leading-relaxed"
         >
-          {descriptions[language]}
+          {t.description}
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 3, duration: 1 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center"
+          className="flex flex-col sm:flex-row flex-wrap gap-3 justify-center"
         >
           <button
             onClick={() => {
               const element = document.querySelector("#projects")
               if (element) element.scrollIntoView({ behavior: "smooth" })
             }}
-            className="px-8 py-4 font-semibold rounded-lg transition-all duration-300 cyber-glow bg-emerald-600 hover:bg-emerald-500 text-white"
+            className="px-6 py-3 font-semibold rounded-lg transition-all duration-300 cyber-glow bg-emerald-600 hover:bg-emerald-500 text-white"
           >
-            {language === "fr" ? "Voir mes projets" : "View my projects"}
+            {t.projects}
           </button>
+          <a
+            href="https://www.linkedin.com/in/vieux-mbaye-ndour-947831271/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-6 py-3 font-semibold rounded-lg transition-all duration-300 border border-emerald-400 text-emerald-200 hover:bg-emerald-500 hover:text-slate-950"
+          >
+            {t.linkedin}
+          </a>
+          <a
+            href="https://medium.com/@vieuxmbayendour"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-6 py-3 font-semibold rounded-lg transition-all duration-300 border border-emerald-400 text-emerald-200 hover:bg-emerald-500 hover:text-slate-950"
+          >
+            {t.medium}
+          </a>
           <button
             onClick={() => {
               const element = document.querySelector("#contact")
               if (element) element.scrollIntoView({ behavior: "smooth" })
             }}
-            className="px-8 py-4 border-2 font-semibold rounded-lg transition-all duration-300 border-emerald-400 text-emerald-400 hover:bg-emerald-400 hover:text-white"
+            className="px-6 py-3 border font-semibold rounded-lg transition-all duration-300 border-emerald-400 text-emerald-200 hover:bg-emerald-500 hover:text-slate-950"
           >
-            {language === "fr" ? "Me contacter" : "Contact me"}
+            {t.contact}
           </button>
         </motion.div>
 
-        {/* Stats */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -186,17 +238,14 @@ export default function CyberHero() {
           className="mt-16 grid grid-cols-1 md:grid-cols-4 gap-6 text-center"
         >
           {[
-            { value: language === "fr" ? "5e" : "4th", label: language === "fr" ? "Annee Ingenieur SSI" : "Year Cybersecurity Engineering" },
-            { value: "30+", label: language === "fr" ? "Projets SSI, SOC & IA" : "Cybersecurity, SOC & AI Projects" },
-            { value: "5", label: language === "fr" ? "Certifications Pro" : "Professional Certifications" },
-            { value: "3", label: language === "fr" ? "Publications Medium" : "Medium Publications" },
+            ...t.stats,
           ].map((stat) => (
             <div
               key={stat.label}
               className="cyber-border rounded-lg p-4 bg-slate-900/50"
             >
-              <div className="text-3xl font-bold text-emerald-400">{stat.value}</div>
-              <div className="text-sm text-emerald-200">{stat.label}</div>
+              <div className="text-3xl font-bold text-emerald-300">{stat.value}</div>
+              <div className="text-sm text-slate-200">{stat.label}</div>
             </div>
           ))}
         </motion.div>
@@ -207,32 +256,12 @@ export default function CyberHero() {
           transition={{ delay: 5, duration: 1 }}
           className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4 text-center"
         >
-          <div className="text-sm text-white">
-            <div className="font-semibold">SOC Analyst & SOAR</div>
-            <div className="text-xs text-slate-400">
-              {language === "fr" ? "Triage - Enrichissement - Reponse automatisee" : "Triage - Enrichment - Automated Response"}
+          {t.pillars.map(([name, detail]) => (
+            <div key={name} className="text-sm text-white">
+              <div className="font-semibold">{name}</div>
+              <div className="text-xs text-slate-400">{detail}</div>
             </div>
-          </div>
-          <div className="text-sm text-white">
-            <div className="font-semibold">Pentesting & Red Team</div>
-            <div className="text-xs text-slate-400">
-              Kali Linux - Metasploit - Burp Suite
-            </div>
-          </div>
-          <div className="text-sm text-white">
-            <div className="font-semibold">
-              {language === "fr" ? "Securite Industrielle ICS/OT" : "Industrial Security ICS/OT"}
-            </div>
-            <div className="text-xs text-slate-400">
-              Cyber Range - Digital Twins - Purdue
-            </div>
-          </div>
-          <div className="text-sm text-white">
-            <div className="font-semibold">SIEM & Threat Hunting</div>
-            <div className="text-xs text-slate-400">
-              {language === "fr" ? "Detection - Correlation - CTI - IOC" : "Detection - Correlation - CTI - IOC"}
-            </div>
-          </div>
+          ))}
         </motion.div>
       </div>
 

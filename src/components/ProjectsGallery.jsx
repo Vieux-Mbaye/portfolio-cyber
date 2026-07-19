@@ -1,258 +1,320 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { useState, useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
+import { usePortfolioLanguage } from "./usePortfolioLanguage"
 
 export default function ProjectsGallery() {
   const [isVisible, setIsVisible] = useState(false)
   const [filter, setFilter] = useState("all")
+  const [language] = usePortfolioLanguage()
   const ref = useRef()
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-        }
-      },
-      { threshold: 0.1 },
-    )
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) setIsVisible(true)
+    }, { threshold: 0.1 })
 
-    if (ref.current) {
-      observer.observe(ref.current)
-    }
-
+    if (ref.current) observer.observe(ref.current)
     return () => observer.disconnect()
   }, [])
 
-  const projects = [
-    {
-      title: "Maturation de la Plateforme SOAR Open-Source pour la Cyber-Defense Proactive",
-      category: "soar",
-      description: "Projet de maturation d'un stack SOC open-source (Wazuh, Shuffle, TheHive, Cortex, MISP) pour transformer la posture de securite reactive en un framework de defense intelligent et proactif.",
-      technologies: ["Wazuh", "Shuffle", "TheHive", "Cortex", "MISP", "VirusTotal", "AbuseIPDB", "API REST", "Python"],
-      impact: "5 phases deployees : enrichissement multi-sources, reponse active HITL, gestion des vulnerabilites, threat hunting automatise, metriques SOC. Reduction significative du travail manuel analyste et acceleration du temps de reponse aux incidents.",
-      status: "En cours",
-      image: "../../public/shuffle.png",
+  const content = {
+    fr: {
+      title: "PROJETS SÉLECTIONNÉS",
+      intro:
+        "Des réalisations orientées cybersécurité IT/OT, automatisation SOC, sécurité applicative, détection et analyse offensive/défensive.",
+      categories: [
+        ["all", "Tous"],
+        ["ics", "ICS/OT"],
+        ["soc", "SOC & SOAR"],
+        ["devsecops", "DevSecOps"],
+        ["detection", "Détection"],
+        ["infrastructure", "Infrastructure"],
+        ["ai", "IA Cyber"],
+        ["audit", "Audit"],
+        ["iot", "IoT"],
+        ["publication", "Publications"],
+      ],
+      button: "Voir les publications",
+      projects: [
+        {
+          title: "Cyber Range ICS/OT – Simulation contrôlée sur infrastructures critiques",
+          category: "ics",
+          description:
+            "Conception et déploiement d’un Cyber Range orienté ICS/OT basé sur une logique de jumeau numérique. La plateforme permet de reproduire des environnements critiques simulés, d’exécuter des scénarios offensifs contrôlés et d’analyser les impacts opérationnels dans un cadre isolé et maîtrisé.",
+          technologies: ["ICS/OT", "Cyber Range", "Digital Twin", "Infrastructures critiques", "Simulation contrôlée", "Analyse de risques", "Impact opérationnel"],
+          status: "Mémoire ingénieur",
+          image: "/image.png",
+          note: "Présentation volontairement limitée au niveau professionnel : aucun détail sensible, adresse IP, payload ou schéma interne.",
+        },
+        {
+          title: "Automatisation SOC & Orchestration SOAR",
+          category: "soc",
+          description:
+            "Conception de workflows d’automatisation pour améliorer le triage, l’enrichissement, la priorisation et la réponse aux incidents. Intégration de mécanismes de validation humaine pour sécuriser les actions automatisées.",
+          technologies: ["SOC", "SOAR", "Wazuh", "Shuffle", "TheHive", "Cortex", "MISP", "OpenCTI", "Python"],
+          status: "Opérationnel",
+          image: "/shuffle.png",
+          note: "Approche orientée fiabilité, traçabilité, réduction de charge analyste et amélioration des délais de réponse.",
+        },
+        {
+          title: "BankGuard – Sécurité applicative & DevSecOps",
+          category: "devsecops",
+          description:
+            "Projet de plateforme bancaire sécurisée intégrant des pratiques DevSecOps, du durcissement applicatif, de l’audit de code et des contrôles de sécurité dans le cycle de développement.",
+          technologies: ["DevSecOps", "Sécurité applicative", "Docker", "CI/CD", "Audit de code"],
+          status: "Projet réalisé",
+          image: "/bankguard.png",
+          note: "Mise en valeur des contrôles de sécurité applicative sans divulguer d’implémentation sensible.",
+        },
+        {
+          title: "Détection d’intrusions & sécurité intelligente",
+          category: "detection",
+          description:
+            "Mise en place de mécanismes de détection combinant règles, supervision et approche intelligente pour améliorer l’identification d’attaques réseau et réduire les faux positifs.",
+          technologies: ["IDS", "SIEM", "Détection", "IA", "Réseau", "Sécurité"],
+          status: "Projet réalisé",
+          image: "/wazuh.png",
+          note: "Travail centré sur la détection, la corrélation, la supervision et l’aide à l’analyse.",
+        },
+        {
+          title: "Infrastructures sécurisées d’entreprise",
+          category: "infrastructure",
+          description:
+            "Conception d’architectures réseau sécurisées avec segmentation, services critiques, supervision, gestion centralisée des identités et contrôle des accès. Le projet valorise la capacité à concevoir des environnements fiables, administrables et défendables.",
+          technologies: ["Network Security", "VLAN", "Routage", "DNS", "DHCP", "VoIP", "Active Directory", "LDAP", "Supervision"],
+          status: "Projet réalisé",
+          image: "/rx.jpg",
+          note: "Présentation générique des choix d’architecture, sans schéma interne ni paramètres opérationnels.",
+        },
+        {
+          title: "Détection automatisée de malwares par apprentissage supervisé",
+          category: "ai",
+          description:
+            "Projet d’analyse intelligente visant à classifier des fichiers ou comportements suspects à partir de caractéristiques pertinentes, avec un objectif d’aide à la détection, à la priorisation et à la réduction de charge opérationnelle.",
+          technologies: ["IA", "Machine Learning", "Python", "Feature Engineering", "Classification", "Malware Analysis"],
+          status: "Projet réalisé",
+          image: "/malware.png",
+          note: "Projet présenté sous l’angle défensif : analyse, classification et aide à la décision.",
+        },
+        {
+          title: "Audit sécurité & durcissement des systèmes",
+          category: "audit",
+          description:
+            "Évaluation de vulnérabilités, analyse de configurations, renforcement des systèmes Linux, amélioration des contrôles d’accès, revue des journaux et recommandations de sécurité opérationnelles.",
+          technologies: ["Audit", "Hardening Linux", "Lynis", "Nessus", "OpenVAS", "Logs", "Firewalling", "Contrôle d’accès"],
+          status: "Projet réalisé",
+          image: "/dur.png",
+          note: "Approche orientée réduction de surface d’attaque, conformité technique et amélioration continue.",
+        },
+        {
+          title: "Solutions connectées sécurisées – IoT & réseaux",
+          category: "iot",
+          description:
+            "Déploiement de systèmes de communication pour environnements connectés, avec attention portée à la segmentation, au contrôle d’accès, à la supervision et à la sécurisation des échanges.",
+          technologies: ["IoT", "MQTT", "Mosquitto", "Réseaux", "Contrôle d’accès", "Supervision", "Sécurité"],
+          status: "Projet réalisé",
+          image: "/mqtt.png",
+          note: "Mise en avant de la sécurisation des communications et de l’administration contrôlée.",
+        },
+        {
+          title: "Automatisation réseau & reporting opérationnel",
+          category: "infrastructure",
+          description:
+            "Mise en place d’outils de suivi pour plans d’adressage, VLAN, VRF, NAT, routage et supervision réseau, avec génération de rapports récurrents pour améliorer la visibilité opérationnelle.",
+          technologies: ["phpIPAM", "LibreNMS", "VBA", "SQL", "BGP", "OSPF", "VLAN", "NAT", "Reporting"],
+          status: "Expérience FREE Sénégal",
+          image: "/Gestion.jpg",
+          note: "Projet présenté au niveau processus et outillage, sans données réseau réelles.",
+        },
+        {
+          title: "Articles techniques cybersécurité offensive",
+          category: "publication",
+          description:
+            "Publications techniques autour de l’exploitation de vulnérabilités, de la sécurité Linux, de la mémoire, de ROP/BROP et de l’analyse offensive/défensive.",
+          technologies: ["CVE-2021-3156", "Baron Samedit", "ROP", "BROP", "Linux Security", "Exploit Analysis"],
+          status: "Publications",
+          image: "/dur.png",
+          note: "Articles pédagogiques avec une lecture technique et défensive.",
+          link: "https://medium.com/@vieuxmbayendour",
+        },
+      ],
     },
-    {
-      title: "ICS Cyber Range - Digital Twin de Dispatching Electrique",
-      category: "ics",
-      description: "Conception et deploiement d'un Cyber Range industriel simulant un reseau de dispatching electrique complet suivant le modele Purdue.",
-      technologies: ["SCADA", "PLC", "DCS", "Historian", "HMI", "Purdue Model", "OpenPLC", "Modbus", "GRFICSv2"],
-      impact: "Cyber Range operationnel avec 2 sous-stations, architecture Purdue complete, phase offensive pour demonstration d'impacts et proposition de mesures defensives.",
-      status: "En cours",
-      image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-1SErglvb9VXwbdooisIk38PxevRgre.png",
+    en: {
+      title: "SELECTED PROJECTS",
+      intro:
+        "Work focused on IT/OT cybersecurity, SOC automation, application security, detection, and offensive/defensive analysis.",
+      categories: [
+        ["all", "All"],
+        ["ics", "ICS/OT"],
+        ["soc", "SOC & SOAR"],
+        ["devsecops", "DevSecOps"],
+        ["detection", "Detection"],
+        ["infrastructure", "Infrastructure"],
+        ["ai", "Cyber AI"],
+        ["audit", "Audit"],
+        ["iot", "IoT"],
+        ["publication", "Publications"],
+      ],
+      button: "View publications",
+      projects: [
+        {
+          title: "ICS/OT Cyber Range – Controlled Simulation for Critical Infrastructure",
+          category: "ics",
+          description:
+            "Design and deployment of an ICS/OT-oriented Cyber Range based on a digital twin approach. The platform reproduces simulated critical environments, runs controlled offensive scenarios, and analyzes operational impacts in an isolated and controlled setting.",
+          technologies: ["ICS/OT", "Cyber Range", "Digital Twin", "Critical Infrastructure", "Controlled Simulation", "Risk Analysis", "Operational Impact"],
+          status: "Engineering thesis",
+          image: "/image.png",
+          note: "Intentionally presented at a professional level: no sensitive details, IP addresses, payloads, or internal diagrams.",
+        },
+        {
+          title: "SOC Automation & SOAR Orchestration",
+          category: "soc",
+          description:
+            "Design of automation workflows to improve alert triage, enrichment, prioritization, and incident response. Human validation mechanisms are integrated to keep automated actions controlled.",
+          technologies: ["SOC", "SOAR", "Wazuh", "Shuffle", "TheHive", "Cortex", "MISP", "OpenCTI", "Python"],
+          status: "Operational",
+          image: "/shuffle.png",
+          note: "Focused on reliability, traceability, analyst workload reduction, and faster response.",
+        },
+        {
+          title: "BankGuard – Application Security & DevSecOps",
+          category: "devsecops",
+          description:
+            "Secure banking platform project integrating DevSecOps practices, application hardening, code auditing, and security controls within the development lifecycle.",
+          technologies: ["DevSecOps", "Application Security", "Docker", "CI/CD", "Code Audit"],
+          status: "Completed",
+          image: "/bankguard.png",
+          note: "Highlights application security controls without exposing sensitive implementation details.",
+        },
+        {
+          title: "Intrusion Detection & Intelligent Security",
+          category: "detection",
+          description:
+            "Implementation of detection mechanisms combining rules, monitoring, and intelligent analysis to improve network attack identification and reduce false positives.",
+          technologies: ["IDS", "SIEM", "Detection", "AI", "Network", "Security"],
+          status: "Completed",
+          image: "/wazuh.png",
+          note: "Focused on detection, correlation, monitoring, and analyst support.",
+        },
+        {
+          title: "Secure Enterprise Infrastructure",
+          category: "infrastructure",
+          description:
+            "Design of secure network architectures with segmentation, critical services, monitoring, centralized identity management, and access control. The project highlights the ability to design reliable, manageable, and defensible environments.",
+          technologies: ["Network Security", "VLAN", "Routing", "DNS", "DHCP", "VoIP", "Active Directory", "LDAP", "Monitoring"],
+          status: "Completed",
+          image: "/rx.jpg",
+          note: "Presented at an architectural level without internal diagrams or operational parameters.",
+        },
+        {
+          title: "Automated Malware Detection with Supervised Learning",
+          category: "ai",
+          description:
+            "Intelligent analysis project aimed at classifying suspicious files or behaviors from relevant features, with a focus on detection support, prioritization, and operational workload reduction.",
+          technologies: ["AI", "Machine Learning", "Python", "Feature Engineering", "Classification", "Malware Analysis"],
+          status: "Completed",
+          image: "/malware.png",
+          note: "Presented from a defensive angle: analysis, classification, and decision support.",
+        },
+        {
+          title: "Security Audit & System Hardening",
+          category: "audit",
+          description:
+            "Vulnerability assessment, configuration analysis, Linux hardening, access control improvement, log review, and operational security recommendations.",
+          technologies: ["Audit", "Linux Hardening", "Lynis", "Nessus", "OpenVAS", "Logs", "Firewalling", "Access Control"],
+          status: "Completed",
+          image: "/dur.png",
+          note: "Focused on attack surface reduction, technical compliance, and continuous improvement.",
+        },
+        {
+          title: "Secure Connected Solutions – IoT & Networks",
+          category: "iot",
+          description:
+            "Deployment of communication systems for connected environments, with attention to segmentation, access control, monitoring, and secure exchanges.",
+          technologies: ["IoT", "MQTT", "Mosquitto", "Networks", "Access Control", "Monitoring", "Security"],
+          status: "Completed",
+          image: "/mqtt.png",
+          note: "Highlights secure communication and controlled administration.",
+        },
+        {
+          title: "Network Automation & Operational Reporting",
+          category: "infrastructure",
+          description:
+            "Implementation of tracking tools for addressing plans, VLAN, VRF, NAT, routing, and network monitoring, with recurring reports to improve operational visibility.",
+          technologies: ["phpIPAM", "LibreNMS", "VBA", "SQL", "BGP", "OSPF", "VLAN", "NAT", "Reporting"],
+          status: "FREE Senegal experience",
+          image: "/Gestion.jpg",
+          note: "Presented at a process and tooling level, without real network data.",
+        },
+        {
+          title: "Technical Articles on Offensive Cybersecurity",
+          category: "publication",
+          description:
+            "Technical publications about vulnerability exploitation, Linux security, memory, ROP/BROP, and offensive/defensive analysis.",
+          technologies: ["CVE-2021-3156", "Baron Samedit", "ROP", "BROP", "Linux Security", "Exploit Analysis"],
+          status: "Publications",
+          image: "/dur.png",
+          note: "Educational articles with both technical and defensive perspectives.",
+          link: "https://medium.com/@vieuxmbayendour",
+        },
+      ],
     },
-    {
-      title: "SIEM + IDS Intelligence Artificielle",
-      category: "siem",
-      description: "Deploiement d'un SIEM couple d'un IDS avec intelligence artificielle (Suricata + IA)",
-      technologies: ["SIEM", "Suricata", "Python", "Machine Learning", "ELK Stack"],
-      impact: "Detection automatique d'intrusions via signatures + classification intelligente des alertes par IA",
-      status: "En cours",
-      image: "../../public/bankguard.png",
-    },
-    {
-      title: "BankGuard - Projet DevSecOps",
-      category: "devsecops",
-      description: "Developpement d'un logiciel bancaire securise avec CI/CD integre",
-      technologies: ["Docker", "Jenkins", "Git", "SCA", "SAST", "DAST"],
-      impact: "Integration de tests de securite, durcissement et audit de code automatises",
-      status: "Termine",
-      image: "../../public/bankguard.png",
-    },
-    {
-      title: "Infrastructure Reseau Avancee d'Entreprise",
-      category: "infrastructure",
-      description: "Architecture securisee complete avec gestion centralisee des acces",
-      technologies: ["Kerberos", "FreeRADIUS", "Active Directory", "LDAP", "VoIP", "Samba"],
-      impact: "Deploiement sur environnement virtualise avec VNC, RDP, NoVNC",
-      status: "Termine",
-      image: "../../public/rx.jpg",
-    },
-    {
-      title: "Pare-feu pfSense + FreeRADIUS + Squid",
-      category: "security",
-      description: "Solution complete de securite reseau avec authentification centralisee",
-      technologies: ["pfSense", "FreeRADIUS", "Squid", "DNS", "Portail Captif"],
-      impact: "Filtrage Web avance, gestion DNS locale avec enregistrements dynamiques",
-      status: "Termine",
-      image: "../../public/rx.jpg",
-    },
-    {
-      title: "Detection de Malwares par Machine Learning",
-      category: "ai",
-      description: "Systeme de detection de malwares par apprentissage supervise",
-      technologies: ["Python", "Scikit-learn", "TensorFlow", "Feature Engineering"],
-      impact: "Analyse statique de fichiers, extraction de features, prediction de comportements malveillants",
-      status: "Termine",
-      image: "../../public/malware.png",
-    },
-    {
-      title: "Audit de Securite & Durcissement Systeme",
-      category: "audit",
-      description: "Analyse complete de vulnerabilites et renforcement de la securite",
-      technologies: ["Nessus", "OpenVAS", "Lynis", "Hardening Linux", "Log Analysis"],
-      impact: "Retro-ingenierie partielle, renforcement des permissions, logs et acces",
-      status: "Termine",
-      image: "../../public/dur.png",
-    },
-    {
-      title: "Correction Automatisee de Devoirs avec IA",
-      category: "ai",
-      description: "Plateforme d'analyse de reponses d'eleves avec scoring automatique",
-      technologies: ["NLP", "Python", "Machine Learning", "Natural Language Processing"],
-      impact: "Scoring automatique base sur NLP et regles pedagogiques",
-      status: "Termine",
-      image: "../../public/IA.png",
-    },
-    {
-      title: "Plateforme de Gestion Budgetaire ESP",
-      category: "development",
-      description: "Systeme de suivi des depenses par projet/etudiant",
-      technologies: ["PHP", "MySQL", "JavaScript", "Chiffrement", "Auth"],
-      impact: "Authentification securisee, stockage en base chiffree",
-      status: "Termine",
-      image: "../../public/Gestion.jpg",
-    },
-    {
-      title: "Systeme IoT Controle de Lampes MQTT",
-      category: "iot",
-      description: "Pilotage distant d'equipements via protocole MQTT",
-      technologies: ["MQTT", "Mosquitto", "IoT", "Web Interface", "Security"],
-      impact: "Interfaces web/console, logique de securite d'acces",
-      status: "Termine",
-      image: "../../public/mqtt.png",
-    },
-  ]
+  }
 
-  const categories = [
-    { id: "all", name: "Tous les projets" },
-    { id: "soar", name: "SOAR & Automatisation" },
-    { id: "ics", name: "ICS/OT & Industrie" },
-    { id: "siem", name: "SIEM & SOC" },
-    { id: "devsecops", name: "DevSecOps" },
-    { id: "infrastructure", name: "Infrastructure" },
-    { id: "security", name: "Securite" },
-    { id: "ai", name: "Intelligence Artificielle" },
-    { id: "audit", name: "Audit & Pentest" },
-    { id: "development", name: "Developpement" },
-    { id: "iot", name: "IoT & Systemes" },
-  ]
-
-  const filteredProjects = filter === "all" ? projects : projects.filter((p) => p.category === filter)
+  const t = content[language]
+  const filteredProjects = filter === "all" ? t.projects : t.projects.filter((project) => project.category === filter)
 
   return (
     <section ref={ref} className="py-20 px-6 bg-slate-950 cyber-grid">
-      <div className="max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
+      <div className="max-w-7xl mx-auto">
+        <motion.div initial={{ opacity: 0, y: 50 }} animate={isVisible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8 }} className="text-center mb-14">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            MES{" "}
-            <motion.span
-              className="text-emerald-400"
-              animate={{
-                textShadow: [
-                  "0 0 20px rgba(52, 211, 153, 0.5), 0 0 40px rgba(52, 211, 153, 0.3)",
-                  "0 0 30px rgba(52, 211, 153, 0.7), 0 0 60px rgba(52, 211, 153, 0.4)",
-                  "0 0 20px rgba(52, 211, 153, 0.5), 0 0 40px rgba(52, 211, 153, 0.3)",
-                ],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Number.POSITIVE_INFINITY,
-                ease: "easeInOut",
-              }}
-            >
-              PROJETS
-            </motion.span>
+            {t.title.split(" ")[0]} <span className="text-emerald-300 neon-text">{t.title.split(" ").slice(1).join(" ")}</span>
           </h2>
-          <p className="text-xl text-emerald-200 max-w-3xl mx-auto mb-8">
-            Decouvrez mes realisations en cybersecurite, automatisation SOC et securite industrielle
-          </p>
+          <p className="text-lg md:text-xl text-slate-200 max-w-4xl mx-auto mb-8">{t.intro}</p>
 
-          <div className="flex flex-wrap justify-center gap-4">
-            {categories.map((category) => (
-              <button
-                key={category.id}
-                onClick={() => setFilter(category.id)}
-                className={`px-6 py-2 rounded-lg font-medium transition-all duration-300 ${
-                  filter === category.id
-                    ? "bg-emerald-600 text-white cyber-glow"
-                    : "bg-slate-800 text-emerald-200 hover:bg-slate-700"
-                }`}
-              >
-                {category.name}
+          <div className="flex flex-wrap justify-center gap-3">
+            {t.categories.map(([id, name]) => (
+              <button key={id} onClick={() => setFilter(id)} className={`px-5 py-2 rounded-lg font-medium transition-all duration-300 ${filter === id ? "bg-emerald-600 text-white cyber-glow" : "bg-slate-800 text-slate-200 hover:bg-slate-700 hover:text-emerald-200"}`}>
+                {name}
               </button>
             ))}
           </div>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
           {filteredProjects.map((project, index) => (
-            <motion.div
-              key={project.title}
-              initial={{ opacity: 0, y: 50 }}
-              animate={isVisible ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: index * 0.1 }}
-              className="cyber-border rounded-lg overflow-hidden bg-slate-900/80 hover:bg-slate-900 transition-all duration-300 group"
-            >
+            <motion.article key={project.title} initial={{ opacity: 0, y: 40 }} animate={isVisible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7, delay: index * 0.08 }} className="cyber-border rounded-lg overflow-hidden bg-slate-900/80 hover:bg-slate-900 transition-all duration-300 group flex flex-col">
               <div className="relative overflow-hidden">
-                <img
-                  src={project.image || "/placeholder.svg"}
-                  alt={project.title}
-                  crossOrigin="anonymous"
-                  className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
-                />
-                <div className="absolute inset-0 bg-emerald-900/20 group-hover:bg-emerald-900/10 transition-colors duration-300"></div>
+                <img src={project.image} alt="" loading="lazy" className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" />
+                <div className="absolute inset-0 bg-slate-950/20 group-hover:bg-slate-950/10 transition-colors duration-300"></div>
               </div>
 
-              <div className="p-6">
-                <div className="flex justify-between items-start mb-2">
+              <div className="p-6 flex flex-col flex-1">
+                <div className="flex justify-between items-start gap-3 mb-3">
                   <h3 className="text-xl font-bold text-white">{project.title}</h3>
-                  <span
-                    className={`px-2 py-1 text-xs rounded flex-shrink-0 ml-2 ${
-                      project.status === "En cours"
-                        ? "bg-yellow-900/50 text-yellow-200 border border-yellow-600"
-                        : "bg-green-900/50 text-green-200 border border-green-600"
-                    }`}
-                  >
-                    {project.status}
-                  </span>
-                </div>
-                <p className="text-emerald-200 mb-4">{project.description}</p>
-
-                <div className="mb-4">
-                  <div className="text-sm text-emerald-400 font-medium mb-2">Realisations:</div>
-                  <div className="text-white text-sm">{project.impact}</div>
+                  <span className="px-2 py-1 text-xs rounded flex-shrink-0 bg-emerald-950/70 text-emerald-100 border border-emerald-700">{project.status}</span>
                 </div>
 
-                <div className="flex flex-wrap gap-2 mb-4">
+                <p className="text-slate-200 mb-4 leading-relaxed">{project.description}</p>
+                <p className="text-sm text-emerald-100 mb-4 leading-relaxed">{project.note}</p>
+
+                <div className="flex flex-wrap gap-2 mt-auto">
                   {project.technologies.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-2 py-1 bg-emerald-900/50 text-emerald-200 text-xs rounded border border-emerald-600"
-                    >
-                      {tech}
-                    </span>
+                    <span key={tech} className="px-2 py-1 bg-emerald-950/50 text-emerald-100 text-xs rounded border border-emerald-700/70">{tech}</span>
                   ))}
                 </div>
 
-                <div className="flex gap-2">
-                  <button className="flex-1 px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white text-sm rounded transition-colors">
-                    Voir le projet
-                  </button>
-                  <button className="px-4 py-2 border border-emerald-600 text-emerald-400 hover:bg-emerald-600 hover:text-white text-sm rounded transition-colors">
-                    Code
-                  </button>
-                </div>
+                {project.link && (
+                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex justify-center px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white text-sm rounded transition-colors">
+                    {t.button}
+                  </a>
+                )}
               </div>
-            </motion.div>
+            </motion.article>
           ))}
         </div>
       </div>

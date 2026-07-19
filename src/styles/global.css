@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 :root {
-  /* Updated color system to use only blue colors with proper contrast ratios */
   --background: oklch(0.08 0.02 240); /* Dark blue background */
   --foreground: oklch(1 0 0); /* Pure white text */
   --card: oklch(0.12 0.02 240); /* Darker blue card background */
@@ -23,8 +22,7 @@
   --ring: oklch(0.7 0.2 220); /* Bright blue focus ring */
 }
 
-/* Removed all emerald/cyan color references and replaced with blue variants */
-/* Cyber-themed animations with blue colors */
+/* Cyber-themed animations with green cyber colors */
 @keyframes glitch {
   0%,
   100% {
@@ -87,7 +85,7 @@
 .matrix-char {
   animation: matrix-rain linear infinite;
   font-family: "Courier New", monospace;
-  color: oklch(0.7 0.2 220); /* Bright blue matrix characters */
+  color: oklch(0.78 0.18 155);
 }
 
 .neon-text {
@@ -100,24 +98,24 @@
   left: 0;
   width: 2px;
   height: 100%;
-  background: linear-gradient(90deg, transparent, oklch(0.7 0.2 220), transparent);
+  background: linear-gradient(90deg, transparent, oklch(0.78 0.18 155), transparent);
   animation: scan-line 3s linear infinite;
 }
 
 /* Custom blue cyber theme with proper contrast */
 .cyber-grid {
-  background-image: linear-gradient(rgba(96, 165, 250, 0.1) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(96, 165, 250, 0.1) 1px, transparent 1px);
+  background-image: linear-gradient(rgba(52, 211, 153, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(52, 211, 153, 0.1) 1px, transparent 1px);
   background-size: 50px 50px;
 }
 
 .cyber-border {
-  border: 1px solid oklch(0.7 0.2 220);
-  box-shadow: 0 0 10px oklch(0.7 0.2 220 / 0.3);
+  border: 1px solid oklch(0.76 0.18 155);
+  box-shadow: 0 0 10px oklch(0.76 0.18 155 / 0.25);
 }
 
 .cyber-glow {
-  box-shadow: 0 0 20px oklch(0.7 0.2 220 / 0.5);
+  box-shadow: 0 0 20px oklch(0.76 0.18 155 / 0.38);
 }
 
 /* Added utility classes for high contrast text */
