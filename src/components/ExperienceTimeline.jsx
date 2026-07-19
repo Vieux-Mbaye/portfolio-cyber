@@ -158,7 +158,7 @@ export default function ExperienceTimeline() {
   return (
     <section ref={ref} className="py-14 sm:py-20 px-4 sm:px-6 cyber-grid bg-slate-900/82">
       <div className="max-w-7xl mx-auto">
-        <motion.div initial={{ opacity: 0, y: 50 }} animate={isVisible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8 }} className="text-center mb-16">
+        <motion.div initial={false} animate={isVisible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8 }} className="text-center mb-16">
           <h2 className="text-[clamp(2rem,9vw,3.5rem)] font-bold mb-4 text-white leading-tight">
             {t.title.split("&")[0]}& <span className="text-emerald-300 neon-text">{t.title.split("&")[1]}</span>
           </h2>
@@ -169,7 +169,7 @@ export default function ExperienceTimeline() {
           <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full cyber-glow bg-emerald-700"></div>
 
           {t.experiences.map((exp, index) => (
-            <motion.div key={exp.title} initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40 }} animate={isVisible ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.8, delay: 0.2 + index * 0.12 }} className={`relative flex items-stretch mb-10 md:mb-12 ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}>
+            <motion.div key={exp.title} initial={false} animate={isVisible ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.8, delay: 0.2 + index * 0.12 }} className={`relative flex items-stretch mb-10 md:mb-12 ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}>
               <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full cyber-glow z-10 bg-emerald-300"></div>
               <div className={`w-full md:w-5/12 ${index % 2 === 0 ? "md:pr-8" : "md:pl-8"}`}>
                 <div className="cyber-border rounded-lg p-5 sm:p-6 h-full transition-all duration-300 bg-slate-800/88 hover:bg-slate-800 min-w-0">
@@ -201,7 +201,7 @@ export default function ExperienceTimeline() {
           ))}
         </div>
 
-        <motion.div initial={{ opacity: 0, y: 30 }} animate={isVisible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8, delay: 0.7 }} className="text-center mt-16">
+        <motion.div initial={false} animate={isVisible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8, delay: 0.7 }} className="text-center mt-16">
           <button onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })} className="px-8 py-4 font-semibold rounded-lg transition-all duration-300 cyber-glow bg-emerald-600 hover:bg-emerald-500 text-white">
             {t.contact}
           </button>

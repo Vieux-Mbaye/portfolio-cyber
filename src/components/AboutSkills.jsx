@@ -152,7 +152,7 @@ export default function AboutSkills() {
   return (
     <section ref={ref} className="py-14 sm:py-20 px-4 sm:px-6 cyber-grid bg-slate-950/82">
       <div className="max-w-7xl mx-auto">
-        <motion.div initial={{ opacity: 0, y: 50 }} animate={isVisible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8 }} className="mb-14">
+        <motion.div initial={false} animate={isVisible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8 }} className="mb-14">
           <h2 className="text-center text-[clamp(2rem,9vw,3.5rem)] font-bold mb-6 text-white leading-tight">
             {t.heading.split("&")[0]}& <span className="text-emerald-300 neon-text">{t.heading.split("&")[1]}</span>
           </h2>
@@ -170,7 +170,7 @@ export default function AboutSkills() {
 
         <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-5 sm:gap-6 mb-14">
           {t.domains.map(([title, items], index) => (
-            <motion.div key={title} initial={{ opacity: 0, y: 30 }} animate={isVisible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: index * 0.08 }} className={`${cardClass} p-6`}>
+            <motion.div key={title} initial={false} animate={isVisible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: index * 0.08 }} className={`${cardClass} p-6`}>
               <h3 className="text-xl font-bold text-emerald-300 mb-4">{title}</h3>
               <div className="space-y-2">
                 {items.map((item) => (
@@ -185,7 +185,7 @@ export default function AboutSkills() {
         </div>
 
         <div className="grid lg:grid-cols-3 gap-6 sm:gap-8 mb-14">
-          <motion.div initial={{ opacity: 0, x: -40 }} animate={isVisible ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.8 }} className={`${cardClass} p-6 lg:col-span-2`}>
+          <motion.div initial={false} animate={isVisible ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.8 }} className={`${cardClass} p-6 lg:col-span-2`}>
             <h3 className="text-2xl font-bold text-emerald-300 mb-6">{t.skillTitle}</h3>
             <div className="grid sm:grid-cols-2 gap-5">
               {t.skillGroups.map(([title, skills]) => (
@@ -203,7 +203,7 @@ export default function AboutSkills() {
             </div>
           </motion.div>
 
-          <motion.div initial={{ opacity: 0, x: 40 }} animate={isVisible ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.8, delay: 0.1 }} className="space-y-6">
+          <motion.div initial={false} animate={isVisible ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.8, delay: 0.1 }} className="space-y-6">
             <div className={`${cardClass} p-6`}>
               <h3 className="text-xl font-bold text-emerald-300 mb-4">{t.certificationsTitle}</h3>
               <div className="space-y-3">
@@ -224,7 +224,7 @@ export default function AboutSkills() {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 mb-14">
-          <motion.div initial={{ opacity: 0, y: 40 }} animate={isVisible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8 }} className={`${cardClass} p-6`}>
+          <motion.div initial={false} animate={isVisible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8 }} className={`${cardClass} p-6`}>
             <h3 className="text-2xl font-bold text-emerald-300 mb-6">{t.educationTitle}</h3>
             <div className="space-y-5">
               {t.education.map((formation) => (
@@ -239,7 +239,7 @@ export default function AboutSkills() {
             </div>
           </motion.div>
 
-          <motion.div initial={{ opacity: 0, y: 40 }} animate={isVisible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8, delay: 0.1 }} className={`${cardClass} p-6`}>
+          <motion.div initial={false} animate={isVisible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8, delay: 0.1 }} className={`${cardClass} p-6`}>
             <h3 className="text-2xl font-bold text-emerald-300 mb-6">{t.publicationsTitle}</h3>
             <div className="space-y-4">
               {publications.map((publication) => (

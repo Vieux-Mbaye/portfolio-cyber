@@ -270,7 +270,7 @@ export default function ProjectsGallery() {
   return (
     <section ref={ref} className="py-14 sm:py-20 px-4 sm:px-6 bg-slate-950/82 cyber-grid">
       <div className="max-w-7xl mx-auto">
-        <motion.div initial={{ opacity: 0, y: 50 }} animate={isVisible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8 }} className="text-center mb-14">
+        <motion.div initial={false} animate={isVisible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8 }} className="text-center mb-14">
           <h2 className="text-[clamp(2rem,9vw,3.5rem)] font-bold text-white mb-4 leading-tight">
             {t.title.split(" ")[0]} <span className="text-emerald-300 neon-text">{t.title.split(" ").slice(1).join(" ")}</span>
           </h2>
@@ -287,7 +287,7 @@ export default function ProjectsGallery() {
 
         <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-5 sm:gap-8">
           {filteredProjects.map((project, index) => (
-            <motion.article key={project.title} initial={{ opacity: 0, y: 40 }} animate={isVisible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7, delay: index * 0.08 }} className="cyber-border rounded-lg overflow-hidden bg-slate-900/88 hover:bg-slate-900 transition-all duration-300 group flex flex-col min-w-0">
+            <motion.article key={project.title} initial={false} animate={isVisible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7, delay: index * 0.08 }} className="cyber-border rounded-lg overflow-hidden bg-slate-900/88 hover:bg-slate-900 transition-all duration-300 group flex flex-col min-w-0">
               <div className="relative overflow-hidden">
                 <img src={project.image} alt="" loading="lazy" className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" />
                 <div className="absolute inset-0 bg-slate-950/20 group-hover:bg-slate-950/10 transition-colors duration-300"></div>

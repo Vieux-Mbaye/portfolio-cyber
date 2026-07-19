@@ -116,7 +116,7 @@ export default function CyberHero() {
 
       <div className="relative z-10 text-center w-full max-w-6xl mx-auto px-4 sm:px-6 pt-24 sm:pt-32 lg:pt-24 pb-10 sm:pb-16">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
           className="mb-5 sm:mb-8"
@@ -150,7 +150,7 @@ export default function CyberHero() {
         </motion.div>
 
         <motion.p
-          initial={{ opacity: 1 }}
+          initial={false}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.4 }}
           className="readability-panel px-4 py-3 sm:py-4 text-sm sm:text-base md:text-xl mb-5 sm:mb-8 font-light max-w-4xl mx-auto text-slate-200 leading-relaxed text-justify"
@@ -159,7 +159,7 @@ export default function CyberHero() {
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 1 }}
+          initial={false}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.4 }}
           className="grid grid-cols-1 sm:flex sm:flex-row sm:flex-wrap gap-3 justify-center"
@@ -199,7 +199,7 @@ export default function CyberHero() {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 1 }}
+          initial={false}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.4 }}
           className="mt-8 sm:mt-16 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 text-center"
@@ -218,7 +218,7 @@ export default function CyberHero() {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 1 }}
+          initial={false}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.4 }}
           className="mt-7 sm:mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 text-center"
