@@ -178,6 +178,16 @@ svg {
   overflow-wrap: break-word;
 }
 
+.article-reading-surface {
+  position: relative;
+  z-index: 20;
+  background:
+    linear-gradient(135deg, rgb(2 6 23 / 0.99), rgb(15 23 42 / 0.97)),
+    radial-gradient(circle at top left, rgb(16 185 129 / 0.08), transparent 34rem);
+  box-shadow: 0 22px 70px rgb(0 0 0 / 0.55);
+  backdrop-filter: blur(8px);
+}
+
 .article-content h2 {
   color: rgb(110 231 183);
   font-size: clamp(1.5rem, 2vw, 2rem);

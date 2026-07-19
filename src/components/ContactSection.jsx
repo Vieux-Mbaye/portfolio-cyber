@@ -13,7 +13,7 @@ export default function ContactSection() {
   const ref = useRef()
   const email = "vieuxmbayendour@esp.sn"
   const linkedIn = "https://www.linkedin.com/in/vieux-mbaye-ndour-947831271/"
-  const medium = "https://medium.com/@vieuxmbayendour"
+  const articles = "/articles/"
   const emailJsConfig = {
     serviceId: import.meta.env.PUBLIC_EMAILJS_SERVICE_ID,
     templateId: import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID,
@@ -37,20 +37,22 @@ export default function ContactSection() {
       formTitle: "Envoyez-moi un message",
       available: "Disponible pour nouveaux projets",
       availableText: "Missions, collaborations techniques, audit, automatisation SOC et projets de sécurité IT/OT.",
-      medium: "Voir mes articles Medium",
+      medium: "Voir mes articles",
       labels: { name: "Nom complet", email: "Email", message: "Message" },
       placeholders: { name: "Votre nom", email: "votre@email.com", message: "Décrivez votre projet ou vos besoins en cybersécurité..." },
       submit: "Envoyer le message",
       sending: "Envoi en cours...",
       success: "Message préparé avec succès.",
       successText: "Je vous répondrai dans les plus brefs délais.",
+      mailto: "Email préparé dans votre application mail.",
+      mailtoText: "Validez l’envoi dans votre client mail pour me transmettre le message.",
       error: "Erreur lors de l’envoi",
       errorText: "Veuillez réessayer ou me contacter directement par email.",
       methods: [
         ["M", "Email", email, "Réponse sous 24h", `mailto:${email}`],
         ["T", "Téléphone", "+221 77 885 94 62", "Lun-Ven 9h-18h", "tel:+221778859462"],
         ["L", "LinkedIn", "linkedin.com/in/vieux-mbaye-ndour-947831271/", "Réseau professionnel", linkedIn],
-        ["A", "Articles", "medium.com/@vieuxmbayendour", "Publications techniques", medium],
+        ["A", "Articles", "vndour.vercel.app/articles", "Publications techniques", articles],
       ],
     },
     en: {
@@ -60,20 +62,22 @@ export default function ContactSection() {
       formTitle: "Send me a message",
       available: "Available for new projects",
       availableText: "Missions, technical collaborations, audits, SOC automation, and IT/OT security projects.",
-      medium: "Read my Medium articles",
+      medium: "Read my articles",
       labels: { name: "Full name", email: "Email", message: "Message" },
       placeholders: { name: "Your name", email: "your@email.com", message: "Describe your project or cybersecurity needs..." },
       submit: "Send message",
       sending: "Sending...",
       success: "Message prepared successfully.",
       successText: "I will reply as soon as possible.",
+      mailto: "Email prepared in your mail application.",
+      mailtoText: "Confirm sending in your mail client to send me the message.",
       error: "Sending error",
       errorText: "Please try again or contact me directly by email.",
       methods: [
         ["M", "Email", email, "Reply within 24h", `mailto:${email}`],
         ["T", "Phone", "+221 77 885 94 62", "Mon-Fri 9am-6pm", "tel:+221778859462"],
         ["L", "LinkedIn", "linkedin.com/in/vieux-mbaye-ndour-947831271/", "Professional network", linkedIn],
-        ["A", "Articles", "medium.com/@vieuxmbayendour", "Technical publications", medium],
+        ["A", "Articles", "vndour.vercel.app/articles", "Technical publications", articles],
       ],
     },
   }
@@ -90,7 +94,7 @@ export default function ContactSection() {
         const subject = encodeURIComponent(`Contact portfolio - ${formData.name}`)
         const body = encodeURIComponent(`${formData.message}\n\nNom/Name: ${formData.name}\nEmail: ${formData.email}`)
         window.location.href = `mailto:${email}?subject=${subject}&body=${body}`
-        setSubmitStatus("success")
+        setSubmitStatus("mailto")
         setFormData({ name: "", email: "", message: "" })
         return
       }
@@ -157,7 +161,7 @@ export default function ContactSection() {
                 <span className="text-white font-medium text-sm sm:text-base">{t.available}</span>
               </div>
               <p className="text-slate-300 text-xs sm:text-sm mt-2 text-justify">{t.availableText}</p>
-              <a href={medium} target="_blank" rel="noopener noreferrer" className="inline-flex mt-4 text-sm text-emerald-300 hover:text-emerald-200">
+              <a href={articles} className="inline-flex mt-4 text-sm text-emerald-300 hover:text-emerald-200">
                 {t.medium} &rarr;
               </a>
             </motion.div>
@@ -170,6 +174,13 @@ export default function ContactSection() {
               <div className="mb-4 sm:mb-6 p-3 sm:p-4 bg-green-900/50 border border-green-600 rounded-lg">
                 <p className="text-green-300 font-medium text-sm sm:text-base">{t.success}</p>
                 <p className="text-green-100 text-xs sm:text-sm mt-1">{t.successText}</p>
+              </div>
+            )}
+
+            {submitStatus === "mailto" && (
+              <div className="mb-4 sm:mb-6 p-3 sm:p-4 bg-emerald-950/60 border border-emerald-600 rounded-lg">
+                <p className="text-emerald-300 font-medium text-sm sm:text-base">{t.mailto}</p>
+                <p className="text-emerald-100 text-xs sm:text-sm mt-1">{t.mailtoText}</p>
               </div>
             )}
 
