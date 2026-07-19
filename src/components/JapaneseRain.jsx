@@ -24,7 +24,7 @@ function randomChar() {
   return JAPANESE_CHARS[Math.floor(Math.random() * JAPANESE_CHARS.length)]
 }
 
-export default function JapaneseRain() {
+export default function JapaneseRain({ contained = false }) {
   const canvasRef = useRef(null)
 
   useEffect(() => {
@@ -37,19 +37,33 @@ export default function JapaneseRain() {
     let drops = []
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
 
+    const getBounds = () => {
+      if (contained && canvas.parentElement) {
+        return {
+          width: canvas.parentElement.clientWidth || window.innerWidth,
+          height: canvas.parentElement.clientHeight || window.innerHeight,
+        }
+      }
+
+      return {
+        width: window.innerWidth,
+        height: window.innerHeight,
+      }
+    }
+
     const resizeCanvas = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, 2)
-      canvas.width = Math.floor(window.innerWidth * dpr)
-      canvas.height = Math.floor(window.innerHeight * dpr)
-      canvas.style.width = "100vw"
-      canvas.style.height = "100vh"
+      const bounds = getBounds()
+      canvas.width = Math.floor(bounds.width * dpr)
+      canvas.height = Math.floor(bounds.height * dpr)
+      canvas.style.width = `${bounds.width}px`
+      canvas.style.height = `${bounds.height}px`
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
       initDrops()
     }
 
     const initDrops = () => {
-      const width = window.innerWidth
-      const height = window.innerHeight
+      const { width, height } = getBounds()
       const fontSize = width < 640 ? 14 : width < 1024 ? 16 : 18
       const density = width < 640 ? 0.55 : width < 1024 ? 0.72 : 0.9
       const colCount = Math.floor((width / fontSize) * density)
@@ -72,14 +86,15 @@ export default function JapaneseRain() {
     }
 
     const animate = () => {
-      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight)
+      const { width, height } = getBounds()
+      ctx.clearRect(0, 0, width, height)
 
       drops.forEach((drop) => {
         drop.y += drop.speed
 
         for (let t = 0; t < drop.trailLength; t++) {
           const charY = drop.y - t * drop.fontSize
-          if (charY < -drop.fontSize || charY > canvas.height + drop.fontSize) continue
+          if (charY < -drop.fontSize || charY > height + drop.fontSize) continue
 
           const progress = t / drop.trailLength
 
@@ -117,8 +132,8 @@ export default function JapaneseRain() {
 
         // Reset drop when it goes off screen
         const totalHeight = drop.trailLength * drop.fontSize
-        if (drop.y - totalHeight > window.innerHeight) {
-          drop.y = -(Math.random() * window.innerHeight) - totalHeight
+        if (drop.y - totalHeight > height) {
+          drop.y = -(Math.random() * height) - totalHeight
           drop.speed = prefersReducedMotion ? 0.6 : 1.5 + Math.random() * 3.2
         }
       })
@@ -129,23 +144,33 @@ export default function JapaneseRain() {
     resizeCanvas()
     animate()
 
+    const resizeObserver =
+      contained && window.ResizeObserver && canvas.parentElement
+        ? new ResizeObserver(resizeCanvas)
+        : null
+
+    if (resizeObserver && canvas.parentElement) {
+      resizeObserver.observe(canvas.parentElement)
+    }
+
     window.addEventListener("resize", resizeCanvas)
 
     return () => {
+      if (resizeObserver) resizeObserver.disconnect()
       window.removeEventListener("resize", resizeCanvas)
       if (animationId) cancelAnimationFrame(animationId)
     }
-  }, [])
+  }, [contained])
 
   return (
     <canvas
       ref={canvasRef}
       style={{
-        position: "fixed",
+        position: contained ? "absolute" : "fixed",
         top: 0,
         left: 0,
-        width: "100vw",
-        height: "100vh",
+        width: contained ? "100%" : "100vw",
+        height: contained ? "100%" : "100vh",
         zIndex: 5,
         pointerEvents: "none",
         opacity: 0.78,
