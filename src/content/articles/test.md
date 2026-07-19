@@ -7,6 +7,6 @@ language: fr
 tags:
   - test
 cover: /uploads/2.png
-draft: true
+draft: false
 ---
 asdfvszcadzcadcadc

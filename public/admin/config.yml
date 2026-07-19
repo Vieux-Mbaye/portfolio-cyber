@@ -61,10 +61,6 @@ collections:
         name: cover
         widget: image
         required: false
-      - label: Brouillon
-        name: draft
-        widget: boolean
-        default: false
       - label: Contenu
         name: body
         widget: markdown
